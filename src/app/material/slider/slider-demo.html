@@ -1,0 +1,66 @@
+<mat-card>
+  <mat-card-title>Slider</mat-card-title>
+  <mat-card-subtitle>mat-slider is a component that allows users to select from a range of values by moving the slider thumb</mat-card-subtitle>
+  <mat-card-content>
+    <h5>Default Slider</h5>
+    Label <mat-slider #slidey aria-label="Basic slider"></mat-slider>
+    {{slidey.value}}
+
+    <h5 class="mt-2">Colors</h5>
+    <mat-slider color="primary" value="50" thumbLabel aria-label="Primary color slider"></mat-slider>
+    <mat-slider color="accent" value="50" thumbLabel aria-label="Accent color slider"></mat-slider>
+    <mat-slider color="warn" value="50" thumbLabel aria-label="Warn color slider"></mat-slider>
+
+    <h5 class="mt-2">Slider with Min and Max</h5>
+    <input [(ngModel)]="min" type="number">
+    <mat-slider [min]="min" [max]="max" tickInterval="5" #slider2 aria-label="Min & max slider">
+    </mat-slider>
+    {{slider2.value}}
+    <input [(ngModel)]="max" type="number">
+
+    <h5 class="mt-2">Disabled Slider</h5>
+    <mat-slider disabled [(ngModel)]="disabledValue" [tickInterval]="1" aria-label="Disabled slider">
+    </mat-slider>
+    <input [(ngModel)]="disabledValue" type="number">
+
+    <h5 class="mt-2"h1>Slider with set value</h5>
+    <mat-slider value="43" aria-label="Initial value slider"></mat-slider>
+
+    <h5 class="mt-2">Slider with step defined</h5>
+    <mat-slider min="1" max="100" step="20" #slider5 aria-label="Slider with step"></mat-slider>
+    {{slider5.value}}
+
+    <h5 class="mt-2">Slider with set tick interval</h5>
+    <mat-slider tickInterval="auto" aria-label="Slider with auto ticks"></mat-slider>
+    <mat-slider tickInterval="9" aria-label="Slider with ticks"></mat-slider>
+
+    <h5 class="mt-2">Slider with Thumb Label</h5>
+    <mat-slider thumbLabel aria-label="Slider with thumb label"></mat-slider>
+
+    <h5 class="mt-2">Slider with one-way binding</h5>
+    <mat-slider [value]="val" step="40" aria-label="Slider with value binding"></mat-slider>
+    <input [(ngModel)]="val" type="number">
+
+    <h5 class="mt-2">Slider with two-way binding</h5>
+    <mat-slider [(ngModel)]="demo" step="40" aria-label="Slider with ngModel"></mat-slider>
+    <input [(ngModel)]="demo" type="number">
+
+    <h5 class="mt-2">Inverted slider</h5>
+    <mat-slider invert value="50" tickInterval="5" aria-label="Inverted slider"></mat-slider>
+
+    <h5 class="mt-2">Vertical slider</h5>
+    <mat-slider vertical thumbLabel tickInterval="auto" value="50" aria-label="Vertical slider">
+    </mat-slider>
+
+    <h5 class="mt-2">Inverted vertical slider</h5>
+    <mat-slider vertical invert thumbLabel tickInterval="auto" value="50"
+              aria-label="Inverted vertical slider">
+    </mat-slider>
+
+    <mat-tab-group>
+      <mat-tab label="One">
+        <mat-slider min="1" max="5" value="3" aria-label="Slider in a tab"></mat-slider>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>

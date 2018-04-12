@@ -1,0 +1,85 @@
+<div class="demo-autocomplete">
+  <mat-card>
+    <mat-card-title>Autocomplete - Reactive</mat-card-title>
+    <mat-card-subtitle>Use auto-complete text fields to present real-time suggestions or completions in dropdowns, so users can enter information more accurately and efficiently.</mat-card-subtitle>
+    <mat-card-content>
+      Reactive length: {{ reactiveStates.length }}
+      <div>Reactive value: {{ stateCtrl.value | json }}</div>
+      <div>Reactive dirty: {{ stateCtrl.dirty }}</div>
+
+      <mat-form-field floatLabel="never">
+        <input matInput placeholder="State" [matAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
+        <mat-autocomplete #reactiveAuto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let state of reactiveStates | async" [value]="state">
+            <span>{{ state.name }}</span>
+            <span class="demo-secondary-text"> ({{state.code}}) </span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="stateCtrl.reset()">Reset</button>
+      <button mat-raised-button color="primary" (click)="stateCtrl.setValue(states[10])">Set Value</button>
+      <button mat-raised-button color="primary" (click)="stateCtrl.enabled ? stateCtrl.disable() : stateCtrl.enable()">
+        Toggle Disabled
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Autocomplete - Template driven</mat-card-title>
+    <mat-card-subtitle>Use auto-complete text fields to present real-time suggestions or completions in dropdowns, so users can enter information more accurately and efficiently.</mat-card-subtitle>
+    <mat-card-content>
+
+      <div>Template-driven value (currentState): {{ currentState }}</div>
+      <div>Template-driven dirty: {{ modelDir ? modelDir.dirty : false }}</div>
+
+      <!-- Added an ngIf below to test that autocomplete works with ngIf -->
+      <mat-form-field *ngIf="true">
+        <input matInput placeholder="State" [matAutocomplete]="tdAuto" [(ngModel)]="currentState"
+          (ngModelChange)="tdStates = filterStates(currentState)" [disabled]="tdDisabled">
+        <mat-autocomplete #tdAuto="matAutocomplete">
+          <mat-option *ngFor="let state of tdStates" [value]="state.name">
+            <span>{{ state.name }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="modelDir.reset()">Reset</button>
+      <button mat-raised-button color="primary" (click)="currentState='California'">Set Value</button>
+      <button mat-raised-button color="primary" (click)="tdDisabled=!tdDisabled">
+        Toggle Disabled
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Autocomplete - Option groups</mat-card-title>
+    <mat-card-subtitle>Use auto-complete text fields to present real-time suggestions or completions in dropdowns, so users can enter information more accurately and efficiently.</mat-card-subtitle>
+    <mat-card-content>
+      <div>Option groups (currentGroupedState): {{ currentGroupedState }}</div>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="State"
+          [matAutocomplete]="groupedAuto"
+          [(ngModel)]="currentGroupedState"
+          (ngModelChange)="filteredGroupedStates = filterStateGroups(currentGroupedState)">
+      </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<mat-autocomplete #groupedAuto="matAutocomplete">
+  <mat-optgroup *ngFor="let group of filteredGroupedStates"
+    [label]="'States starting with ' + group.letter">
+    <mat-option *ngFor="let state of group.states" [value]="state.name">{{ state.name }}</mat-option>
+  </mat-optgroup>
+</mat-autocomplete>

@@ -1,0 +1,374 @@
+<div fxLayout="row wrap">
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-teal">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>local_offer</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>103</h2>
+          <p>Campaigns</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-purple">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>phone</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>230</h2>
+          <p>Customers</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-red">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>notifications</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>323</h2>
+          <p>Queries</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-sm="25" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card class="card-widget mat-indigo">
+      <div mat-card-widget>
+        <div mat-card-float-icon>
+          <mat-icon>email</mat-icon>
+        </div>
+        <div class="pl-0">
+          <h2 mat-card-widget-title>870</h2>
+          <p>Opens</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row wrap">
+	<div fxFlex.gt-sm="33.33%" fxFlex="100">
+		<mat-card>
+      <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+        Revenue &nbsp; <span class="font-weight-bold mat-text-primary">+458,90</span>
+        <span fxFlex></span>
+        <button mat-icon-button mat-button-sm [matMenuTriggerFor]="card1" aria-label="Open card menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-card-subtitle>
+      <mat-menu #card1="matMenu" x-position="before">
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          Settings
+        </button>
+        <button mat-menu-item>
+          <mat-icon>more</mat-icon>
+          View More
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          Disable notifications
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          Remove Panel
+        </button>
+      </mat-menu>
+			<mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [colors]="chartColors"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"></canvas>
+      </mat-card-content>
+		</mat-card>
+	</div>
+	<div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="50" fxFlex="100">
+		<mat-card>
+      <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+        Yearly Sales &nbsp; <span class="font-weight-bold mat-text-warn">-46,68</span>
+        <span fxFlex></span>
+        <button mat-icon-button mat-button-sm [matMenuTriggerFor]="card2" aria-label="Open card menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-card-subtitle>
+      <mat-menu #card2="matMenu" x-position="before">
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          Settings
+        </button>
+        <button mat-menu-item>
+          <mat-icon>more</mat-icon>
+          View More
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          Disable notifications
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          Remove Panel
+        </button>
+      </mat-menu>
+			<mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="ComboChartData"
+          [labels]="comboChartLabels"
+          [options]="ComboChartOptions"
+          [colors]="chartColors"
+          [legend]="comboChartLegend"
+          [chartType]="barChartType"></canvas>
+      </mat-card-content>
+		</mat-card>
+	</div>
+	<div fxFlex.gt-sm="33.33%" fxFlex.gt-xs="50" fxFlex="100">
+		<mat-card>
+      <mat-card-subtitle fxLayout="row" fxLayoutAlign="start center">
+        Sales Report &nbsp; <span class="font-weight-bold mat-text-accent">+2,50%</span>
+        <span fxFlex></span>
+        <button mat-icon-button mat-button-sm [matMenuTriggerFor]="card3" aria-label="Open card menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-card-subtitle>
+      <mat-menu #card3="matMenu" x-position="before">
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          Settings
+        </button>
+        <button mat-menu-item>
+          <mat-icon>more</mat-icon>
+          View More
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          Disable notifications
+        </button>
+        <button mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          Remove Panel
+        </button>
+      </mat-menu>
+			<mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="bubbleChartData"
+          [labels]="comboChartLabels"
+          [options]="ComboChartOptions"
+          [legend]="comboChartLegend"
+          [chartType]="bubbleChartType"></canvas>
+      </mat-card-content>
+		</mat-card>
+	</div>
+</div>
+
+<div fxLayout="row wrap">
+  <div fxFlex.gt-sm="66.66%" fxFlex="100">
+    <ngx-datatable
+      class="material"
+      [rows]="rows"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="0"
+      [rowHeight]="'auto'">
+      <ngx-datatable-column name="Project">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{row['project']}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Due Date">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{row['date'] | date: 'MMMM dd'}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Progress">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <mat-progress-bar mode="determinate" value="{{row['progress']}}" color="primary"></mat-progress-bar>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+  <div fxFlex.gt-sm="33.33%" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Newsfeed</mat-card-title>
+      <mat-card-subtitle>Stories posted today</mat-card-subtitle>
+      <hr>
+      <mat-list>
+        <ng-template let-item let-last="last" ngFor [ngForOf]="messages">
+          <mat-list-item>
+            <img mat-list-avatar src="{{item.photo}}" alt="">
+            <h3 matLine> {{item.from}} </h3>
+            <p matLine> {{item.subject}} - {{item.message}} </p>
+          </mat-list-item>
+        </ng-template>
+      </mat-list>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout="row wrap">
+  <div fxFlex.gt-md="50" fxFlex="100">
+    <mat-card>
+      <div fxLayout="row" fxLayoutAlign="center center" class="mr-1">
+        <mat-card-header class="mt-0">
+          <img matCardAvatar src="assets/images/avatar.jpg">
+          <mat-card-subtitle>Revenue &nbsp; <span class="font-weight-bold mat-text-primary">+458,90</span></mat-card-subtitle>
+          <mat-card-title>Gerald Morris</mat-card-title>
+        </mat-card-header>
+        <span fxFlex></span>
+        <button mat-icon-button mat-button-sm [matMenuTriggerFor]="card1" aria-label="Open card menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
+      <div class="card-image-header" style="background-image: url(assets/images/unsplash/2.jpg); height: 240px;"></div>
+      <mat-card-content>
+        <button mat-fab mat-fab-card-float class="mr-1" color="warn"><mat-icon>share</mat-icon></button>
+        <p class="ma-0">Phileas Fogg and Aouda went on board, where they found Fix already installed. Below deck was a square cabin, of which the walls bulged out in the form of cots, above a circular divan; in the centre was a table provided with a swinging lamp.</p>
+      </mat-card-content>
+      <hr>
+      <mat-card-actions>
+        <div fxLayout="row">
+          <button mat-icon-button>
+            <mat-icon>share</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <span fxFlex></span>
+          <button mat-button>More info</button>
+          <button mat-button>Download</button>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-md="50" fxFlex="100">
+    <mat-card>
+      <mat-card-content class="pb-0">
+        <div fxLayout="row" fxLayoutAlign="start center" class="mb-2">
+          <div fxFlex>
+            <h1 class="mt-0 mb-0">London, UK</h1>
+            <h2 class="mt-0 mb-0">Saturday 2:00 AM</h2>
+            <p class="mat-text-muted mt-0 mb-0">Mostly Sunny</p>
+          </div>
+          <span fxFlex></span>
+          <div fxFlex class="text-xs-right">
+            <h1 class="text-xxl mt-0 mb-0">
+              <span class="pe-is-w-moon-sea mat-text-accent"></span>
+              <span>6<sup></sup></span>
+            </h1>
+          </div>
+        </div>
+        <div fxLayout="row" layout-align="center" class="mb-2 text-md">
+          <div class="pr-1" fxFlex>
+            <div fxLayout="row">
+              <span>Pressure</span>
+              <span fxFlex></span>
+              <span>30.09</span>
+              <span>hPa</span>
+            </div>
+
+            <div fxLayout="row">
+              <span>Visibility</span>
+              <span fxFlex></span>
+              <span>11.27</span>
+              <span>km</span>
+            </div>
+
+            <div fxLayout="row">
+              <span>Light</span>
+              <span fxFlex></span>
+              <span>0.00</span>
+            </div>
+
+            <div fxLayout="row">
+              <span>Light</span>
+              <span fxFlex></span>
+              <span>16</span>
+              <span>C</span>
+            </div>
+          </div>
+          <div class="pl-1" fxFlex>
+            <div fxLayout="row">
+              <span>Humidity</span>
+              <span fxFlex></span>
+              <span>94</span>
+              <span>%</span>
+            </div>
+
+            <div fxLayout="row">
+              <span>Precp.</span>
+              <span fxFlex></span>
+              <span></span>
+              <span>mm</span>
+            </div>
+
+            <div fxLayout="row">
+              <span>Snow Depth</span>
+              <span fxFlex></span>
+              <span></span>
+            </div>
+
+            <div fxLayout="row">
+              <span>Wind Gust</span>
+              <span fxFlex></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="mat-indigo">
+        <div fxLayout="row" class="text-xs-center">
+          <div fxFlex>
+            <div class="text-md">6 km/h</div>
+            <div class="text-md pb-xs"><mat-icon>call_received</mat-icon></div>
+            <div class="text-md">MON</div>
+            <h1 class="block mt-0 mb-0 pb-xs"><i class="pe-is-w-blizzard"></i></h1>
+            <strong class="degree-value">10</strong>
+          </div>
+          <div fxFlex>
+            <div class="text-md">6 km/h</div>
+            <div class="text-md pb-xs"><mat-icon>call_received</mat-icon></div>
+            <div class="text-md">TUE</div>
+            <h1 class="block mt-0 mb-0 pb-xs"><i class="pe-is-w-eclipse-1"></i></h1>
+            <strong class="degree-value">8</strong>
+          </div>
+          <div fxFlex>
+            <div class="text-md">6 km/h</div>
+            <div class="text-md pb-xs"><mat-icon>call_made</mat-icon></div>
+            <div class="text-md">WED</div>
+            <h1 class="block mt-0 mb-0 pb-xs"><i class="pe-is-w-fog-3"></i></h1>
+            <strong class="degree-value">6</strong>
+          </div>
+          <div fxFlex>
+            <div class="text-md">6 km/h</div>
+            <div class="text-md pb-xs"><mat-icon>arrow_upward</mat-icon></div>
+            <div class="text-md">THU</div>
+            <h1 class="block mt-0 mb-0 pb-xs"><i class="pe-is-w-hail-day-2"></i></h1>
+            <strong class="degree-value">6</strong>
+          </div>
+          <div fxFlex>
+            <div class="text-md">6 km/h</div>
+            <div class="text-md pb-xs"><mat-icon>call_received</mat-icon></div>
+            <div class="text-md">FRI</div>
+            <h1 class="block mt-0 mb-0 pb-xs"><i class="pe-is-w-mix-rainfall-1"></i></h1>
+            <strong class="degree-value">9</strong>
+          </div>
+          <div fxFlex>
+            <div class="text-md">6 km/h</div>
+            <div class="text-md pb-xs"><mat-icon>arrow_forward</mat-icon></div>
+            <div class="text-md">SAT</div>
+            <h1 class="block mt-0 mb-0 pb-xs"><i class="pe-is-w-moon-sea"></i></h1>
+            <strong class="degree-value">8</strong>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

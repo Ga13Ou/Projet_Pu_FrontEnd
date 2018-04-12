@@ -1,0 +1,114 @@
+<mat-sidenav-container class="background-none shadow-none">
+  <mat-sidenav #productsnav [mode]="isOver() ? 'over' : 'side'" [opened]="!isOver()" class="pa-0 ma-0">
+    <div class="pl-1 pr-1 pb-1">
+      <h3>Price</h3>
+      <mat-slider value="43"></mat-slider>
+    </div>
+    <hr>
+
+    <div class="pa-1">
+      <h3 class="mt-1">Brand</h3>
+      <div class="pb-1">
+        <mat-checkbox>Apple</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>Microsoft</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>Samsung</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>HTC</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>Sony</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>Huawei</mat-checkbox>
+      </div>
+    </div>
+    <hr>
+
+    <div class="pa-1">
+      <h3>Screen Size</h3>
+      <div class="pb-1">
+        <mat-checkbox>16 GB</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>32 GB</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>64 GB</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>128 GB</mat-checkbox>
+      </div>
+    </div>
+    <hr>
+
+    <div class="pa-1">
+      <h3>OS</h3>
+      <div class="pb-1">
+        <mat-checkbox>Android</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>iOS</mat-checkbox>
+      </div>
+      <div class="pb-1">
+        <mat-checkbox>Windows</mat-checkbox>
+      </div>
+    </div>
+
+    <div class="pa-1">
+      <button mat-raised-button color="primary">Filter</button>
+    </div>
+
+  </mat-sidenav>
+  <mat-toolbar color="primary" fxHide="false" fxHide.gt-sm>
+    <button (click)="productsnav.toggle()" mat-icon-button>
+      <mat-icon>short_text</mat-icon>
+    </button>
+    <span class="mr-1 ml-1">Filter</span>
+  </mat-toolbar>
+
+  <div fxLayout="row wrap">
+    <div fxFlex.gt-sm="25" fxFlex.gt-xs="33.3333%" fxFlex="100" *ngFor="let product of products">
+      <mat-card>
+        <div class="media-grid">
+          <figure>
+            <div class="product-badge" *ngIf="product.status === 'sale'"><span>Sale</span></div>
+            <img src="assets/images/unsplash/{{ product.id }}.jpg">
+            <figcaption>
+              <p>
+                <a href="javascript:;" matTooltip="Add to cart" matTooltipPosition="left">
+                  <mat-icon>shopping_basket</mat-icon>
+                </a>
+                <a href="javascript:;" matTooltip="Add to favorites" matTooltipPosition="left">
+                  <mat-icon>favorite</mat-icon>
+                </a>
+                <a href="javascript:;" matTooltip="Share" matTooltipPosition="left">
+                  <mat-icon>share</mat-icon>
+                </a>
+                <a href="javascript:;" matTooltip="Bookmark" matTooltipPosition="left">
+                  <mat-icon>bookmark</mat-icon>
+                </a>
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+        <mat-card-content>
+          <div fxLayout="row" fxLayoutAlign="center center">
+            <div fxFlex>
+              <p class="ma-0">{{ product.name }}</p>
+              <p class="ma-0 pa-0 text-md">{{ product.description }}</p>
+            </div>
+            <div class="mat-text-primary text-xl">
+              <span class="strikethrough mat-text-muted text-sm" *ngIf="product.discounted === 'discounted'">$ {{ product.discount }}</span>
+              <span> $ {{ product.price }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</mat-sidenav-container>

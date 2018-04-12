@@ -1,0 +1,121 @@
+<mat-card>
+  <div fxLayout="row wrap" fxLayoutAlign=" stretch" class="mb-1">
+    <div fxFlex.gt-md="40" fxFlex.gt-sm="50" fxFlex="100">
+      <div class="card-image-header product-image-header" style="background-image: url(assets/images/unsplash/fashion3.jpg); background-position: top;"></div>
+    </div>
+    <div fxFlex.gt-md="60" fxFlex.gt-sm="50" fxFlex="100" class="pa-1">
+      <div class="product-detail-header">
+        <h1 class="ma-0 pa-0"><strong>{{ product.name }}</strong></h1>
+        <h4 class="mat-text-muted ma-0 pa-0">{{ product.description }}</h4>
+
+        <div fxLayout="row wrap">
+          <span fxLayout="row">
+            <span *ngFor="let star of stars" [class.mat-text-default]="star <= product.rating" class="mat-text-muted">&#9733;</span>
+          </span>
+          <span class="px-1">({{ product.rating }}) Votes</span>
+          <a href="javascript:;">{{ product.rating }} customer reviews</a>
+        </div>
+      </div>
+      <h2 class="mat-text-primary mt-1">
+        <span> $ {{ product.price }}</span>
+        <span class="strikethrough mat-text-muted text-sm" *ngIf="product.discounted === 'discounted'">$ {{ product.discount }}</span>
+        <span class="text-xs mat-text-muted">*excluding tax</span>
+      </h2>
+
+      <div class="description">
+        <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
+        <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.</p>
+      </div>
+
+      <div fxLayout="row wrap" class="my-2">
+        <div fxLayout="row" fxLayoutAlign="none center">
+          <p>Size:</p>
+          <div class="mx-1">
+            <mat-button-toggle-group>
+              <mat-button-toggle>S</mat-button-toggle>
+              <mat-button-toggle>M</mat-button-toggle>
+              <mat-button-toggle>L</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="none center">
+          <p>Color:</p>
+          <div class="mx-1">
+            <mat-button-toggle-group>
+              <mat-button-toggle>R</mat-button-toggle>
+              <mat-button-toggle>G</mat-button-toggle>
+              <mat-button-toggle>B</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+        </div>
+      </div>
+
+      <button mat-raised-button color="primary" class="mr-1">Add to cart</button>
+      <button mat-raised-button color="accent" class="mr-1">Add to my wishlist</button>
+    </div>
+  </div>
+
+  <mat-tab-group [selectedIndex]="2">
+    <mat-tab>
+      <ng-template matTabLabel>Description</ng-template>
+      <mat-card-content>
+        <p><strong>Donec sed odio dui.</strong></p>
+        <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
+        <p>Sed posuere consectetur est at lobortis. Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Curabitur blandit tempus porttitor. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+      </mat-card-content>
+    </mat-tab>
+    <mat-tab>
+      <ng-template matTabLabel>Specifications</ng-template>
+      <mat-card-content>
+        <div fxLayout="column" layout-align="center">
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">Processor:&nbsp;</span>
+            <span>2.0GHz dual-core Intel Core i5 processor</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">CPU:&nbsp;</span>
+            <span>Turbo Boost up to 3.1GHz</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">RAM:&nbsp;</span>
+            <span>8GB 1866MHz memory</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">Hard Drive:&nbsp;</span>
+            <span>256GB PCIe-based SSD1</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">Graphics Chip:&nbsp;</span>
+            <span>Intel Iris Graphics 540</span>
+          </div>
+
+          <div fxLayout="row" class="py-1">
+            <span class="mat-text-muted">Ports:&nbsp;</span>
+            <span>Two Thunderbolt 3 ports</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-tab>
+    <mat-tab>
+      <ng-template matTabLabel>Customer Reviews</ng-template>
+      <mat-list>
+        <ng-template let-item let-last="last" ngFor [ngForOf]="messages">
+          <mat-list-item>
+            <img mat-list-avatar src="{{item.photo}}" alt="">
+            <h3 matLine> {{item.from}} </h3>
+            <div matLine>
+              <span fxLayout="row">
+                <span *ngFor="let star of stars" [class.mat-text-default]="star <= item.rating" class="mat-text-muted">&#9733;</span>
+              </span>
+            </div>
+            <p matLine> {{item.subject}} - {{item.message}} </p>
+          </mat-list-item>
+        </ng-template>
+      </mat-list>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

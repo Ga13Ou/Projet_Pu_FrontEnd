@@ -1,0 +1,90 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row></mat-toolbar-row>
+  <mat-toolbar-row></mat-toolbar-row>
+</mat-toolbar>
+
+<div fxLayout="row wrap" fxLayoutAlign="center start">
+  <div fxFlex.gt-sm="55" fxFlex="100">
+    <mat-card class="mat-card-top">
+      <mat-tab-group>
+        <mat-tab>
+          <ng-template matTabLabel>General</ng-template>
+          <mat-card-content>
+            <form fxLayout="column">
+
+              <mat-form-field class="mb-1">
+                <input matInput placeholder="First name">
+              </mat-form-field>
+
+              <mat-form-field class="mb-1">
+                <input matInput placeholder="Last name">
+              </mat-form-field>
+
+              <mat-form-field class="mb-1">
+                <input matInput placeholder="Company">
+              </mat-form-field>
+
+              <mat-form-field class="mb-1">
+                <input matInput placeholder="Email address">
+              </mat-form-field>
+
+              <mat-form-field class="mb-1">
+                <mat-select placeholder="Timezone">
+                  <mat-option value="Hawaii">(GMT-10:00) Hawaii</mat-option>
+                  <mat-option value="Alaska">(GMT-09:00) Alaska</mat-option>
+                  <mat-option value="Pacific Time (US & Canada)">(GMT-08:00) Pacific Time (US & Canada)</mat-option>
+                  <mat-option value="Arizona">(GMT-07:00) Arizona</mat-option>
+                  <mat-option value="Mountain Time (US & Canada)">(GMT-07:00) Mountain Time (US & Canada)</mat-option>
+                  <mat-option value="Central Time (US & Canada)" selected="selected">(GMT-06:00) Central Time (US & Canada)</mat-option>
+                  <mat-option value="Eastern Time (US & Canada)">(GMT-05:00) Eastern Time (US & Canada)</mat-option>
+                  <mat-option value="Indiana (East)">(GMT-05:00) Indiana (East)</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="mb-1">
+                <input matInput placeholder="Username">
+              </mat-form-field>
+
+            </form>
+          </mat-card-content>
+        </mat-tab>
+        <mat-tab>
+          <ng-template matTabLabel>Security</ng-template>
+          <mat-card-content>
+            <form fxLayout="column">
+
+              <mat-form-field class="mb-1">
+                <input matInput placeholder="Old password" type="password">
+              </mat-form-field>
+
+              <mat-form-field class="mb-1">
+                <input matInput placeholder="New password" type="password">
+              </mat-form-field>
+
+              <mat-form-field class="mb-1">
+                <input matInput placeholder="Confirm new password" type="password">
+              </mat-form-field>
+
+            </form>
+          </mat-card-content>
+        </mat-tab>
+        <mat-tab>
+          <ng-template matTabLabel>Preferances</ng-template>
+          <mat-card-content>
+            <mat-list>
+              <mat-list-item *ngFor="let system of systems">
+                <span fxFlex>{{system.name}}</span>
+                <mat-slide-toggle [(ngModel)]="system.on"></mat-slide-toggle>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+      <hr>
+      <mat-card-actions>
+        <button mat-raised-button class="shadow-none">Save</button>
+        <button mat-raised-button color="primary">Cancel</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

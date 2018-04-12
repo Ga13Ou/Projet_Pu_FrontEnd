@@ -1,0 +1,18 @@
+<h5>Tasks</h5>
+<ul style="list-style: none; padding-left: 0;">
+  <li *ngFor="let task of tasks">
+    <mat-checkbox [(ngModel)]="task.completed"
+                 [checked]="allComplete(task)"
+                 [indeterminate]="someComplete(task.subtasks)"
+                 (change)="setAllCompleted(task.subtasks, $event.checked)">
+      <h3 class="mb-0 pb-0">{{task.name}}</h3>
+    </mat-checkbox>
+    <ul style="list-style: none">
+      <li *ngFor="let subtask of task.subtasks">
+        <mat-checkbox [(ngModel)]="subtask.completed">
+          {{subtask.name}}
+        </mat-checkbox>
+      </li>
+    </ul>
+  </li>
+</ul>

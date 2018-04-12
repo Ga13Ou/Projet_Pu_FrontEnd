@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-title>Slide Toggle</mat-card-title>
+  <mat-card-subtitle>matSlideToggle is a two-state control, which can be also called switch.</mat-card-subtitle>
+  <mat-card-content>
+    <div class="slide-toggle-example">
+
+      <mat-slide-toggle color="primary" [(ngModel)]="firstToggle">
+        Default Slide Toggle
+      </mat-slide-toggle>
+
+      <mat-slide-toggle [(ngModel)]="firstToggle" disabled>
+        Disabled Slide Toggle
+      </mat-slide-toggle>
+
+      <mat-slide-toggle [disabled]="firstToggle">
+        Disable Bound
+      </mat-slide-toggle>
+
+      <p>Example where the slide toggle is required inside of a form.</p>
+
+      <form #form="ngForm" (ngSubmit)="onFormSubmit()" ngNativeValidate>
+
+        <mat-slide-toggle name="slideToggle" required ngModel>
+          Slide Toggle
+        </mat-slide-toggle>
+
+        <p>
+          <button mat-raised-button type="submit">Submit Form</button>
+        </p>
+
+      </form>
+
+    </div>
+  </mat-card-content>
+</mat-card>

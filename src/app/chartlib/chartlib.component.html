@@ -1,0 +1,191 @@
+<div fxLayout="row wrap">
+  <!-- bar -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Bar</mat-card-title>
+      <mat-card-subtitle>Basic</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [colors]="lineChartColors"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- bar -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Bar</mat-card-title>
+      <mat-card-subtitle>Horizontal</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartHorizontalOptions"
+          [colors]="lineChartColors"
+          [legend]="barChartLegend"
+          [chartType]="barChartHorizontalType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- bar -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Bar</mat-card-title>
+      <mat-card-subtitle>Stacked</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartStackedOptions"
+          [colors]="lineChartColors"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- line -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Line</mat-card-title>
+      <mat-card-subtitle>Basic</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- line -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Line</mat-card-title>
+      <mat-card-subtitle>Stepped</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="lineChartSteppedData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- line -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Line</mat-card-title>
+      <mat-card-subtitle>Points</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="lineChartPointsData"
+          [labels]="lineChartLabels"
+          [options]="lineChartPointsOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- mixed -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Mixed</mat-card-title>
+      <mat-card-subtitle>Mix different charts</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="ComboChartData"
+          [labels]="lineChartLabels"
+          [options]="ComboChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="barChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- bubble -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Bubble</mat-card-title>
+      <mat-card-subtitle>Display three dimensions of data</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="bubbleChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="bubbleChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- doughnut -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Doughnut</mat-card-title>
+      <mat-card-subtitle>Pie chart with a cutout</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [data]="doughnutChartData"
+          [labels]="doughnutChartLabels"
+          [options]="doughnutOptions"
+          [colors]="doughnutChartColors"
+          [chartType]="doughnutChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- pie -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Pie</mat-card-title>
+      <mat-card-subtitle>Without the cutout</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [data]="pieChartData"
+          [options]="doughnutOptions"
+          [colors]="doughnutChartColors"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- polar -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Polar area</mat-card-title>
+      <mat-card-subtitle>Each segment has the same angle</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [data]="polarAreaChartData"
+          [options]="doughnutOptions"
+          [colors]="doughnutChartColors"
+          [labels]="polarAreaChartLabels"
+          [legend]="polarAreaLegend"
+          [chartType]="polarAreaChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- radar -->
+  <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" fxFlex="100">
+    <mat-card>
+      <mat-card-title>Radar</mat-card-title>
+      <mat-card-subtitle>Multiple data points and the variation between them</mat-card-subtitle>
+      <mat-card-content>
+        <canvas height="200" baseChart class="chart"
+          [datasets]="radarChartData"
+          [options]="globalChartOptions"
+          [colors]="lineChartColors"
+          [labels]="radarChartLabels"
+          [chartType]="radarChartType"></canvas>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

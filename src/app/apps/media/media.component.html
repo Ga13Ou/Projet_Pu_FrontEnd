@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <button mat-button>New album</button>
+  <span fxFlex></span>
+  <button mat-icon-button><mat-icon>settings</mat-icon></button>
+  <button mat-icon-button><mat-icon>chevron_left</mat-icon></button>
+  <button mat-icon-button><mat-icon>chevron_right</mat-icon></button>
+</mat-toolbar>
+
+<mat-grid-list cols="3">
+  <mat-grid-tile *ngFor="let id of images" rowHeight="2:1">
+    <img src="assets/images/unsplash/{{id}}.jpg" alt="Card image cap"/>
+    <mat-grid-tile-footer>
+      <h3 matLine>{{ id }}</h3>
+      <span matLine>Gallery image: {{ id }}</span>
+      <mat-icon>favorite</mat-icon>
+    </mat-grid-tile-footer>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,0 +1,115 @@
+<div>
+  <button mat-raised-button color="primary" (click)="openJazz()">
+    Open dialog
+  </button>
+  <button mat-raised-button color="accent" (click)="openContentElement()">
+    Open dialog with content elements
+  </button>
+  <button mat-raised-button color="accent" (click)="openTemplate()">
+    Open dialog with template content
+  </button>
+</div>
+<div>
+  <mat-card class="demo-dialog-card">
+    <mat-card-content>
+      <h5>Dialog dimensions</h5>
+
+      <p>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.width" placeholder="Width">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.height" placeholder="Height">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.minWidth" placeholder="Min Width">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.minHeight" placeholder="Min Height">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.maxWidth" placeholder="Max Width">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.maxHeight" placeholder="Max Height">
+        </mat-form-field>
+      </p>
+
+      <h5 class="mt-2">Dialog position</h5>
+
+      <p>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.position.top" (change)="config.position.bottom = ''" placeholder="Top">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.position.bottom" (change)="config.position.top = ''" placeholder="Bottom">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.position.left" (change)="config.position.right = ''" placeholder="Left">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.position.right" (change)="config.position.left = ''" placeholder="Right">
+        </mat-form-field>
+      </p>
+
+      <h5 class="mt-2">Dialog backdrop</h5>
+
+      <p>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.backdropClass" placeholder="Backdrop class">
+        </mat-form-field>
+      </p>
+
+      <mat-checkbox [(ngModel)]="config.hasBackdrop">Has backdrop</mat-checkbox>
+
+      <h5 class="mt-2">Other options</h5>
+
+      <p>
+        <mat-form-field>
+          <mat-select placeholder="Button alignment" [(ngModel)]="actionsAlignment">
+            <mat-option>Start</mat-option>
+            <mat-option value="end">End</mat-option>
+            <mat-option value="center">Center</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input matInput [(ngModel)]="config.data.message" placeholder="Dialog message">
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-checkbox [(ngModel)]="config.disableClose">Disable close</mat-checkbox>
+      </p>
+
+      <h5 class="mt-2">Results</h5>
+      <p>Last afterClosed result: {{lastAfterClosedResult}}</p>
+      <p>Last beforeClose result: {{lastBeforeCloseResult}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template let-data let-dialogRef="dialogRef">
+  I'm a template dialog. I've been opened {{numTemplateOpens}} times!
+
+  <p>It's Jazz!</p>
+
+  <mat-form-field>
+    <input matInput placeholder="How much?" #howMuch>
+  </mat-form-field>
+
+  <p> {{ data.message }} </p>
+  <button type="button" (click)="dialogRef.close(lastCloseResult = howMuch.value)">Close dialog</button>
+  <button (click)="dialogRef.updateSize('500px', '500px').updatePosition({ top: '25px', left: '25px' });">Change dimensions</button>`
+</ng-template>

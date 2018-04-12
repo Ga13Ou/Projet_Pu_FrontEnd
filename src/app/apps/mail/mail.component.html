@@ -1,0 +1,113 @@
+<mat-sidenav-container class="app-inner mail-container background-none shadow-none" [ngClass]="{ 'side-panel-opened': sidePanelOpened, 'side-panel-closed': !sidePanelOpened }">
+  <mat-sidenav #mailnav [mode]="isOver() ? 'over' : 'side'" [opened]="!isOver()" (open)="sidePanelOpened = true"  
+  (close)="sidePanelOpened = false" class="mail-sidebar pl-xs pr-xs" [perfectScrollbar]="config" [disabled]="isOver()">
+    <mat-nav-list class="messages-nav">
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-muted">inbox</mat-icon>
+        <span>Inbox</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-muted">schedule</mat-icon>
+        <span>Snoozed</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-muted">check</mat-icon>
+        <span>Done</span>
+      </a>
+      <mat-divider></mat-divider>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-muted">send</mat-icon>
+        <span>Sent</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-muted">drafts</mat-icon>
+        <span>Draft</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-muted">stars</mat-icon>
+        <span>Important</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-muted">error</mat-icon>
+        <span>Junk</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-muted">delete</mat-icon>
+        <span>Trash</span>
+      </a>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader>Circles</h3>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-primary">people</mat-icon>
+        <span>Social</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-warn">local_offer</mat-icon>
+        <span>Promotions</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-accent">wc</mat-icon>
+        <span>Family</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mr-1">business</mat-icon>
+        <span>Work</span>
+      </a>
+      <a href="javascript:;" mat-list-item>
+        <mat-icon class="mat-text-accent">contacts</mat-icon>
+        <span>Clients</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary" fxHide="false" fxHide.gt-sm>
+    <button (click)="mailnav.toggle()" mat-icon-button>
+      <mat-icon>short_text</mat-icon>
+    </button>
+    <span class="mr-1 ml-1">Mailbox</span>
+  </mat-toolbar>
+  <div #mailcontent class="main-content" fxLayout="row" fxLayoutAlign="center start" [perfectScrollbar]="config" [disabled]="isOver()">
+    <div class="messages-list" fxFlex.gt-sm="90" fxFlex.gt-xs="95" fxFlex="100">
+      <mat-accordion [displayMode]="displayMode" [multi]="multi">
+        <mat-expansion-panel  [hideToggle]="hideToggle" *ngFor="let message of messages; let i = index" [class.selected]="message === selectedMessage">
+          <mat-expansion-panel-header (click)="onSelect(message)">
+            <div fxLayout="row" fxLayoutAlign="none center" class="w-100">
+              <img alt="" class="message-icon mr-1 hide-on-open" src="{{message.avatar}}" *ngIf="!message.icon"/>
+              <mat-icon [ngClass]="message.iconClass" class="mr-1 hide-on-open" *ngIf="message.icon">{{message.icon}}</mat-icon>
+              <div class="pr-1 hide-on-open" fxShow="false" fxShow.gt-xs style="min-width: 120px;">
+                <span>{{message.from}}</span>
+              </div>
+              <div class="text-ellipsis">
+                <span>{{message.subject}}</span>
+              </div>
+              <span fxFlex></span>
+              <div class="pl-1 text-xs-right text-ellipsis hide-on-open" fxShow="false" fxShow.gt-sm>
+                <small class="text-xs-muted">{{ message.date | date: 'fullDate' }}</small>
+              </div>
+            </div>
+          </mat-expansion-panel-header>
+          <mat-card *ngIf="selectedMessage" class="shadow-none">
+            <mat-card-header>
+              <img matCardAvatar *ngIf="!selectedMessage.icon" src="{{selectedMessage.avatar}}"  class="ml-0">
+              <mat-icon *ngIf="selectedMessage.icon" matCardAvatar [ngClass]="selectedMessage.iconClass" class="ml-0">{{selectedMessage.icon}}</mat-icon>
+              <mat-card-title>{{selectedMessage.from}}</mat-card-title>
+              <mat-card-subtitle>{{selectedMessage.date | date: 'fullDate'}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="pl-0">
+              <div [innerHTML]="selectedMessage.body"></div>
+            </mat-card-content>
+          </mat-card>
+          <mat-action-row>
+            <button mat-raised-button mat-button-sm color="primary" class="mx-xs">Archive</button>
+            <button mat-raised-button mat-button-sm color="accent" class="mx-xs">Delete</button>
+            <button mat-raised-button mat-button-sm class="mx-xs">Forward</button>
+            <button mat-raised-button mat-button-sm class="mx-xs">Trash</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</mat-sidenav-container>
+
+<button mat-fab color="warn" class="mat-fab-bottom-right">
+  <mat-icon class="mat-24">create</mat-icon>
+</button>

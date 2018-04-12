@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row></mat-toolbar-row>
+  <mat-toolbar-row></mat-toolbar-row>
+</mat-toolbar>
+
+<div fxLayout="row wrap" fxLayoutAlign="center start">
+  <div fxFlex.gt-md="75" fxFlex.gt-sm="90" fxFlex="100">
+    <mat-card class="mat-card-top">
+      <mat-tab-group (selectChange)="onSelectChange($event)">
+        <mat-tab>
+          <ng-template matTabLabel>Basic</ng-template>
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" #map1></agm-map>
+        </mat-tab>
+        <mat-tab>
+          <ng-template matTabLabel>Styles</ng-template>
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [styles]="styles" #map2></agm-map>
+        </mat-tab>
+        <mat-tab>
+          <ng-template matTabLabel>Polyline</ng-template>
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" #map3>
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+            <agm-marker [latitude]="latA" [longitude]="lngA"></agm-marker>
+            <agm-polyline>
+              <agm-polyline-point [latitude]="lat" [longitude]="lng">
+              </agm-polyline-point>
+              <agm-polyline-point [latitude]="latA" [longitude]="lngA">
+              </agm-polyline-point>
+            </agm-polyline>
+          </agm-map>
+        </mat-tab>
+        <mat-tab>
+          <ng-template matTabLabel>Info Window</ng-template>
+          <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" #map4>
+            <agm-marker [latitude]="lat" [longitude]="lng">
+              <agm-info-window>InfoWindow content</agm-info-window>
+            </agm-marker>
+          </agm-map>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

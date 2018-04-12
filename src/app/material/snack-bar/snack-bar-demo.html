@@ -1,0 +1,58 @@
+<mat-card>
+  <mat-card-title>Snack Bar</mat-card-title>
+  <mat-card-subtitle>matSnackBar is a service, which opens snack bar notifications in the view.</mat-card-subtitle>
+  <mat-card-content>
+    <div>
+      <div>
+        Message: <mat-form-field><input matInput type="text" [(ngModel)]="message"></mat-form-field>
+      </div>
+      <div>
+        <div>Position in page: </div>
+        <mat-form-field>
+          <mat-select [(ngModel)]="horizontalPosition">
+            <mat-option value="start">Start</mat-option>
+            <mat-option value="end">End</mat-option>
+            <mat-option value="left">Left</mat-option>
+            <mat-option value="right">Right</mat-option>
+            <mat-option value="center">Center</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [(ngModel)]="verticalPosition">
+            <mat-option value="top">Top</mat-option>
+            <mat-option value="bottom">Bottom</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-checkbox [(ngModel)]="action">
+          <p *ngIf="!action">Show button on snack bar</p>
+          <mat-form-field *ngIf="action">
+            <input matInput
+                  type="text"
+                  class="demo-button-label-input"
+                  placeholder="Snack bar action label"
+                  [(ngModel)]="actionButtonLabel">
+          </mat-form-field>
+        </mat-checkbox>
+      </div>
+      <div>
+        <mat-checkbox [(ngModel)]="setAutoHide">
+          <p *ngIf="!setAutoHide">Auto hide after duration</p>
+          <mat-form-field *ngIf="setAutoHide">
+            <input matInput
+                  type="number"
+                  class="demo-button-label-input"
+                  placeholder="Auto Hide Duration in ms"
+                  [(ngModel)]="autoHide">
+          </mat-form-field>
+        </mat-checkbox>
+      </div>
+      <p>
+        <mat-checkbox [(ngModel)]="addExtraClass">Add extra class to container</mat-checkbox>
+      </p>
+    </div>
+
+    <button mat-raised-button (click)="open()">OPEN</button>
+  </mat-card-content>
+</mat-card>

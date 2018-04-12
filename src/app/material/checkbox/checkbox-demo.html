@@ -1,0 +1,67 @@
+<mat-card>
+  <mat-card-title>Checkbox</mat-card-title>
+  <mat-card-subtitle>mat-checkbox is a Material Design selection control that allows users to make a binary choice for a predetermined conditioned</mat-card-subtitle>
+  <mat-card-content>
+    <form>
+      <mat-checkbox [(ngModel)]="isChecked"
+                  name="cb"
+                  value="basic_checkbox"
+                  [color]="checkboxColor()"
+                  (change)="isIndeterminate = false"
+                  [indeterminate]="isIndeterminate"
+                  [disabled]="isDisabled"
+                  [align]="alignment">
+        Do you want to <em>foobar</em> the <em>bazquux</em>?
+
+      </mat-checkbox> - <strong>{{printResult()}}</strong>
+    </form>
+    <div class="demo-checkboxes">
+      <input id="indeterminate-toggle"
+            type="checkbox"
+            [(ngModel)]="isIndeterminate"
+            [disabled]="isDisabled">
+      <label for="indeterminate-toggle">Toggle Indeterminate</label>
+      <input id="disabled-toggle" type="checkbox" [(ngModel)]="isDisabled">
+      <label for="disabled-toggle">Toggle Disabled</label>
+      <input id="color-toggle" type="checkbox" [(ngModel)]="useAlternativeColor">
+      <label for="color-toggle">Toggle Color</label>
+    </div>
+    <div>
+      <p>Alignment:</p>
+      <div>
+        <input #start type="radio"
+                      value="start"
+                      id="align-start"
+                      name="alignment"
+                      (click)="alignment = start.value"
+                      checked>
+        <label for="align-start">Start</label>
+      </div>
+      <div>
+        <input #end type="radio"
+                      value="end"
+                      id="align-end"
+                      name="alignment"
+                      (click)="alignment = end.value">
+        <label for="align-end">End</label>
+      </div>
+    </div>
+
+    <h5 class="mt-2">Pseudo checkboxes</h5>
+    <mat-pseudo-checkbox></mat-pseudo-checkbox>
+    <mat-pseudo-checkbox [disabled]="true"></mat-pseudo-checkbox>
+
+    <mat-pseudo-checkbox state="checked"></mat-pseudo-checkbox>
+    <mat-pseudo-checkbox state="checked" [disabled]="true"></mat-pseudo-checkbox>
+
+    <mat-pseudo-checkbox state="indeterminate"></mat-pseudo-checkbox>
+    <mat-pseudo-checkbox state="indeterminate" [disabled]="true"></mat-pseudo-checkbox>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Nested checklist</mat-card-title>
+  <mat-card-content>
+    <app-mat-checkbox-demo-nested-checklist></app-mat-checkbox-demo-nested-checklist>
+  </mat-card-content>
+</mat-card>
