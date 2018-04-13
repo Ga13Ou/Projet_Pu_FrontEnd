@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import {MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule} from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { EtudiantRegisterComponent } from './etudiant-register/etudiant-register.component';
+
 
 @NgModule({
   imports: [
@@ -19,8 +21,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatButtonModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  declarations: [CreateComponent]
+  declarations: [CreateComponent, EtudiantRegisterComponent]
 })
-export class UserManagerModule { }
+export class UserManagerModule {
+
+}
