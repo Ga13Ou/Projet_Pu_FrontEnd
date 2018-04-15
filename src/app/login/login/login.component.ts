@@ -29,7 +29,13 @@ export class LoginComponent implements OnInit {
       console.log("uname",this.form.controls['uname'].value) ;
     }
 */
-  this.loginService.login(this.model);
+
+   this.loginService.login(this.model).then(result=>{
+console.log(result.data.user)
+   }).catch(err=>{
+     console.error(err);
+   })
+
 
   }
 }
