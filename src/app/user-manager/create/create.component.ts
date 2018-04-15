@@ -21,7 +21,14 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate ( [ '/dashboard' ] );
+    if (this.form.controls['uname'].value.trim() && this.form.controls['password'].value.trim()) {
+    this.router.navigate ( [ '/' ] );
+    console.log("uname",this.form.controls['uname'].value) ;
+    }
+
+
   }
+
+
 
 }

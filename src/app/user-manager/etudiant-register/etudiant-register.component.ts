@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CustomValidators} from "ng2-validation";
-import {Etudiant} from "../../../Models/Etudiant";
+import {User} from '../../../Models/User';
+
 
 const password = new FormControl('', Validators.required);
 const confirmPassword = new FormControl('', CustomValidators.equalTo(password));
@@ -15,7 +16,7 @@ export class EtudiantRegisterComponent implements OnInit {
 
   public form: FormGroup;
   constructor(private fb: FormBuilder, private router: Router) {}
-  private model =new Etudiant();
+  private model =new User();
 
   ngOnInit() {
     this.form = this.fb.group( {
