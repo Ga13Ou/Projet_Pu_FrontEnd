@@ -52,7 +52,7 @@ export const AppRoutes: Routes = [{
     path: 'session',
     loadChildren: './session/session.module#SessionModule'
   }, {
-    path: 'user-manager/create',
+    path: 'user-manager',
     loadChildren: './user-manager/user-manager.module#UserManagerModule'
   }]
 }, {
