@@ -27,7 +27,7 @@ export class BackEndServiceService {
   }
 
   update(user: User) {
-    return this.http.put('/api/users/' + user._id, user);
+    return this.http.put('/api/users/' + user.id, user);
   }
 
   delete(id: number) {
