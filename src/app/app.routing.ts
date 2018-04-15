@@ -54,8 +54,12 @@ export const AppRoutes: Routes = [{
   }, {
     path: 'user-manager/create',
     loadChildren: './user-manager/user-manager.module#UserManagerModule'
+  } ,{
+    path: 'login',
+    loadChildren: './login/login.module#LoginModule'
   }]
 }, {
   path: '**',
   redirectTo: 'session/404'
 }];
+
