@@ -5,6 +5,7 @@ import {User} from "./User";
 export class Employe extends User{
     empl_poste:String;
     constructor(){
-        super.type="EMPLOYE";
+        super();
+        this.type="EMPLOYE";
     }
 }

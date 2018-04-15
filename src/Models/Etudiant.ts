@@ -6,6 +6,7 @@ export class Etudiant extends User{
     etu_num_inscription:string;
     etu_annee_admission:string;
     constructor(){
-        super.type="ETUDIANT";
+        super();
+        this.type="ETUDIANT";
 }
 }
