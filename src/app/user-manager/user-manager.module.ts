@@ -9,7 +9,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EtudiantRegisterComponent } from './etudiant-register/etudiant-register.component';
 import {HttpClientModule} from "@angular/common/http";
-import {UserService} from "./user.service";
+
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import {UserService} from "./user.service";
     HttpClientModule,
   ],
   declarations: [CreateComponent, EtudiantRegisterComponent],
-  providers: [UserService]
+  providers: []
 })
 export class UserManagerModule {
 

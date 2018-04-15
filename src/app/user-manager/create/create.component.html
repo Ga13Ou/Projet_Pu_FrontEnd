@@ -13,18 +13,18 @@
                 <mat-form-field style="width: 100%">
                   <input matInput placeholder="Username" [formControl]="form.controls['uname']">
                 </mat-form-field>
-                <small *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched" class="mat-text-warn">Username is required.</small>
+                <small *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched" class="mat-text-warn">Email est obligatoire.</small>
               </div>
               <div class="pb-1">
                 <mat-form-field style="width: 100%">
                   <input matInput type="password" placeholder="Password" [formControl]="form.controls['password']">
                 </mat-form-field>
-                <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="mat-text-warn">Password is required.</small>
+                <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="mat-text-warn">Mot de passe est obligatoire.</small>
               </div>
               <div class="pb-1">
                 <mat-checkbox>Stay logged in</mat-checkbox>
               </div>
-              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Login</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid" >Login</button>
             </div>
             <div class="pt-1 pb-1 text-xs-center">
               <a [routerLink]="['/session/forgot']">Forgot password?</a>&nbsp;&nbsp;&nbsp;&nbsp;
