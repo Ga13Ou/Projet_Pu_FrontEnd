@@ -8,6 +8,8 @@ import {MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInp
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EtudiantRegisterComponent } from './etudiant-register/etudiant-register.component';
+import {HttpClientModule} from "@angular/common/http";
+import {UserService} from "./user.service";
 
 
 @NgModule({
@@ -22,8 +24,10 @@ import { EtudiantRegisterComponent } from './etudiant-register/etudiant-register
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  declarations: [CreateComponent, EtudiantRegisterComponent]
+  declarations: [CreateComponent, EtudiantRegisterComponent],
+  providers: [UserService]
 })
 export class UserManagerModule {
 

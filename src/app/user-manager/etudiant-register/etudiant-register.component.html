@@ -135,9 +135,10 @@
                             <mat-checkbox>I have read and agree to the terms of service.</mat-checkbox>
 
                         </div>
-                        <button mat-raised-button color="primary" class="btn-block" type="submit"
-                                [disabled]="!form.valid">Create your account
+                        <button mat-raised-button color="primary" class="btn-block" type="submit" (click)="onSubmit()">
+                               <!-- [disabled]="!form.valid"--> Create your account
                         </button>
+                            {{model |json}}
                         </div>
                         <!--            <div class="pt-1 pb-1 text-xs-center">
                         &lt;!&ndash;              <a [routerLink]="['/session/forgot']">Forgot password?</a>&nbsp;&nbsp;&nbsp;&ndash;&gt;&nbsp;

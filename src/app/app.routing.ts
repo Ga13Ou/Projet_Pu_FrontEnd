@@ -8,15 +8,15 @@ export const AppRoutes: Routes = [{
   children: [{
     path: '',
     loadChildren: './dashboard/dashboard.module#DashboardModule'
-  }, {
-    path: 'user-manager',
-    loadChildren: './user-manager/user-manager.module#UserManagerModule'
   },{
     path: 'apps',
     loadChildren: './apps/apps.module#AppsModule'
   }, {
     path: 'widgets',
     loadChildren: './widgets/widgets.module#WidgetsModule'
+  }, {
+    path: 'user-manager',
+    loadChildren: './user-manager/user-manager.module#UserManagerModule'
   }, {
     path: 'material',
     loadChildren: './material/material.module#MaterialComponentsModule'
@@ -51,6 +51,9 @@ export const AppRoutes: Routes = [{
   children: [{
     path: 'session',
     loadChildren: './session/session.module#SessionModule'
+  }, {
+    path: 'user-manager/create',
+    loadChildren: './user-manager/user-manager.module#UserManagerModule'
   }]
 }, {
   path: '**',

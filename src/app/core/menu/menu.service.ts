@@ -50,7 +50,7 @@ const MENUITEMS = [
     type: 'sub',
     icon: 'apps',
     children: [
-      {state: 'create', name: 'CREATE'},
+     /* {state: 'create', name: 'CREATE'},*/
       {state: 'studentRegister', name:'Student Register'}
 
     ]
