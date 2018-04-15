@@ -8,6 +8,7 @@ import {MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInp
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {BackEndServiceService} from '../DA/back-end-service.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  declarations: [LoginComponent]
+  declarations: [LoginComponent],
+  providers: [BackEndServiceService]
 })
 export class LoginModule { }
