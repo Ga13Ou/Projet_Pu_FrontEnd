@@ -7,6 +7,7 @@ export class Enseignant extends User{
     ens_grade:String;
     ens_type_contrat:{type:String,enum:['CONTRACTUEL','VACATAIRE','EXPERT','AUTRE']};
     constructor(){
-        super.type="ENSEIGNANT";
+        super();
+        this.type="ENSEIGNANT";
     }
 }
