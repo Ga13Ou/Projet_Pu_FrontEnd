@@ -2,8 +2,9 @@
  * Created by GAST-LEE on 12/04/2018.
  */
 
-export class UserDTO {
+export class User {
   creation_date: string;
+  id:string;
   nom: string;
   prenom: string;
   email: string;
@@ -12,12 +13,7 @@ export class UserDTO {
   date_naissance: string;
   num_cin: string;
   adresse: string;
-  type: string;
-  etu_num_inscription?: number;
-  etu_annee_admission?: number;
+  readonly type: string;
 }
 
-export class User extends UserDTO {
-  _id: string;
-  __v: number;
-}
+
