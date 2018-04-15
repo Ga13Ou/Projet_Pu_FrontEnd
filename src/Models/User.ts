@@ -13,7 +13,7 @@ export class User {
   date_naissance: string;
   num_cin: string;
   adresse: string;
-  readonly type: string;
+  public type: string;
 }
 
 

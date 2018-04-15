@@ -9,5 +9,6 @@ export class Enseignant extends User{
     constructor(){
         super();
         this.type="ENSEIGNANT";
+
     }
 }
