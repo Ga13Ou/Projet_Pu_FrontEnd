@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import {MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule} from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { EtudiantRegisterComponent } from './etudiant-register/etudiant-register.component';
+import { AjoutEtudiantComponent } from './ajout-etudiant/ajout-etudiant.component';
 import {HttpClientModule} from "@angular/common/http";
 
 
@@ -26,7 +26,7 @@ import {HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  declarations: [CreateComponent, EtudiantRegisterComponent],
+  declarations: [CreateComponent, AjoutEtudiantComponent],
   providers: []
 })
 export class UserManagerModule {

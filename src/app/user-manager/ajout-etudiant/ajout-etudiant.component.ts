@@ -3,20 +3,21 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CustomValidators} from "ng2-validation";
 import {User} from '../../../Models/User';
+import {BackEndServiceService} from "../../DA/back-end-service.service";
 
 
 /*const password = new FormControl('', Validators.required);
 const confirmPassword = new FormControl('', CustomValidators.equalTo(password));*/
 @Component({
   selector: 'app-etudiant-register',
-  templateUrl: './etudiant-register.component.html',
-  styleUrls: ['./etudiant-register.component.scss']
+  templateUrl: './ajout-etudiant.component.html',
+  styleUrls: ['./ajout-etudiant.component.scss']
 })
-export class EtudiantRegisterComponent implements OnInit {
+export class AjoutEtudiantComponent implements OnInit {
 
 
   public form: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, private router: Router, private userService:BackEndServiceService) {}
   private model =new User();
 
 
@@ -30,6 +31,7 @@ export class EtudiantRegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.model);
     /*this.router.navigate( ['/dashboard'] );*/
   }
 }
