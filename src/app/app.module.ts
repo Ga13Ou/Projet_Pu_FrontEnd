@@ -47,6 +47,7 @@ import {
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import {BackEndServiceService} from "./DA/back-end-service.service";
+import {AuthGuardService} from "./DA/auth-guard.service";
 
 
 
@@ -111,7 +112,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
     },
-    BackEndServiceService
+    BackEndServiceService,
+      AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

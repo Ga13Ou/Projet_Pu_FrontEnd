@@ -28,13 +28,18 @@ export class BackEndServiceService {
 
       });
     });
-
-//TODO: finish the login and storing the object from result.data.user in a User object 
   }
 
   logout(){
     localStorage.removeItem("currentUser");
     this.router.navigate(['/login']);
+  }
+
+  isLoggedIn():boolean{
+    let currentUser=JSON.parse(localStorage.getItem("currentUser"));
+    if(currentUser)
+      return true;
+    return false;
   }
   getById(id: number) {
     return this.http.get('/api/users/' + id);
