@@ -13,14 +13,18 @@ import {BackEndServiceService} from '../../DA/back-end-service.service';
 export class LoginComponent implements OnInit {
 
 
+
   public form: FormGroup;
   constructor(private fb: FormBuilder, private router: Router, private loginService:BackEndServiceService) {}
   private model = new User();
 
   ngOnInit() {
-   /* this.form = this.fb.group ( {
-      uname: [null , Validators.compose ( [ Validators.required ] )] , password: [null , Validators.compose ( [ Validators.required ] )]
-    } ); */
+
+      //to redirect to the dashboard if already connected
+      let currentUser=JSON.parse(localStorage.getItem("currentUser"));
+      if(currentUser){
+        this.router.navigate(['/']);
+    }
   }
 
   onSubmit() {
@@ -31,11 +35,14 @@ export class LoginComponent implements OnInit {
 */
 
    this.loginService.login(this.model).then(result=>{
-console.log(result.data.user)
-   }).catch(err=>{
-     console.error(err);
-   })
-
+       let currentUser =localStorage.getItem("currentUser");
+       if(currentUser){
+           this.router.navigate(['/']);
+       }
+   });
 
   }
+
 }
+
+
