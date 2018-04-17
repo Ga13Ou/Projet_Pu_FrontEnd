@@ -1,0 +1,27 @@
+<div *ngIf="isDataAvailable" class="list_Users">
+
+  <mat-table #table [dataSource]="users">
+
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nom}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="prenom">
+      <mat-header-cell *matHeaderCellDef> Prenom</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.prenom}} </mat-cell>
+    </ng-container>
+
+     <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

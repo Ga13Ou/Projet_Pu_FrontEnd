@@ -51,7 +51,8 @@ const MENUITEMS = [
     icon: 'apps',
     children: [
      /* {state: 'create', name: 'CREATE'},*/
-      {state: 'AjoutEtudiant', name:'Ajouter Etudiant'}
+      {state: 'AjoutEtudiant', name:'Ajouter Etudiant'},
+      {state: 'ListerUtilisateurs', name:'Liste des utilisateurs'}
 
     ]
   },

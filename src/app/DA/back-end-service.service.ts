@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
 import {UniversalUserForm} from "../../Models/UniversalUserForm";
 
+
 @Injectable()
 export class BackEndServiceService {
     result: any;
@@ -13,7 +14,19 @@ export class BackEndServiceService {
     }
 
     getAll() {
-        return this.http.get<User[]>('http://139.99.97.231:3000/utilisateur/all?page=0&limit=0');
+        let result=new Promise((resolve,reject)=> {
+            this.http.get<any>(environment.SERVER_URL + '/utilisateur/all?page=0&limit=0').toPromise()
+                .then((result: any) => {
+                    if (result.status == 1) {
+                        resolve(result);
+                    }
+                    else
+                        reject()
+                }).catch(err => {
+                console.error(err)
+            });
+        });
+        return result;
     }
 
     login(user: User) {
