@@ -4,7 +4,11 @@ import { CommonModule } from '@angular/common';
 import {routes} from './user-manager-routing.module';
 import { CreateComponent } from './create/create.component';
 import { RouterModule } from '@angular/router';
-import {MatButtonModule, MatCardModule, MatCheckboxModule, MatIconModule, MatInputModule} from "@angular/material";
+import {
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatIconModule, MatInputModule,
+  MatNativeDateModule,
+  MatSelectModule
+} from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AjoutEtudiantComponent } from './ajout-etudiant/ajout-etudiant.component';
@@ -21,10 +25,13 @@ import {HttpClientModule} from "@angular/common/http";
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatSelectModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   declarations: [CreateComponent, AjoutEtudiantComponent],
   providers: []

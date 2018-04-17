@@ -55,13 +55,12 @@
 -->
 
 
-
 <div class="session mat-indigo">
     <div class="session-content">
         <div class="session-wrapper">
             <mat-card>
                 <mat-card-content>
-                    <form (ngSubmit)="onSubmit()" #myform="ngForm">
+                    <form #myform="ngForm">
                         <div class="text-xs-center pb-1">
                             <img src="assets/images/logo-dark.svg" alt=""/>
                             <p class="mat-text-muted">Create an app id to continue.</p>
@@ -72,6 +71,7 @@
                                     <input matInput name="nom" placeholder="Nom" type="text" [(ngModel)]="model.nom">
                                 </mat-form-field>
                             </div>
+
                             <div class="pb-1">
                                 <mat-form-field style="width: 100%">
                                     <input matInput name="prenom" placeholder="Prenom" type="text"
@@ -93,7 +93,8 @@
 
                             <div class="pb-1">
                                 <mat-form-field style="width: 100%">
-                                    <input name="confirm_password" matInput placeholder="Confirm Password" type="password">
+                                    <input name="confirm_password" matInput placeholder="Confirm Password"
+                                           type="password">
                                 </mat-form-field>
                             </div>
                             <div class="pb-1">
@@ -102,42 +103,88 @@
                                            [(ngModel)]="model.num_tel">
                                 </mat-form-field>
                             </div>
-                            <div class="pb-1">
-                                <mat-form-field style="width: 100%">
-                                    <input matInput name="date_de_naissance" placeholder="date de naissance" type="Date"
-                                           [(ngModel)]="model.date_naissance">
-                                </mat-form-field>
-                            </div>
-                            <div class="pb-1">
-                                <mat-form-field style="width: 100%">
-                                    <input matInput name="cin" placeholder="numero CIN" type="number" [(ngModel)]="model.num_cin">
-                                </mat-form-field>
-                            </div>
-                            <div class="pb-1">
-                                <mat-form-field style="width: 100%">
-                                    <input matInput name="adresse" placeholder="Adresse" type="text" [(ngModel)]="model.adresse">
-                                </mat-form-field>
-                            </div>
-                            <div class="pb-1">
-                                <mat-form-field style="width: 100%">
-                                    <input matInput name="num_ins" placeholder="Numero d'inscription" type="number"
-                                           [(ngModel)]="model.etu_num_inscription">
-                                </mat-form-field>
-                            </div>
-                            <div class="pb-1">
-                                <mat-form-field style="width: 100%">
-                                    <input matInput name="annee_admi" placeholder="Annee d'admission" type="number"
-                                           [(ngModel)]="model.etu_annee_admission">
-                                </mat-form-field>
-                            </div>
 
-                        <div class="pb-1">
-                            <mat-checkbox>I have read and agree to the terms of service.</mat-checkbox>
+                            <div class="pb-1">
+                                <mat-form-field style="width: 100%">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <input matInput name="date_de_naissance" [matDatepicker]="picker"
+                                           [(ngModel)]="model.date_naissance"  >
+                                </mat-form-field>
+                            </div>
+                            <div class="pb-1">
+                                <mat-form-field style="width: 100%">
+                                    <input matInput name="cin" placeholder="numero CIN" type="number"
+                                           [(ngModel)]="model.num_cin">
+                                </mat-form-field>
+                            </div>
+                            <div class="pb-1">
+                                <mat-form-field style="width: 100%">
+                                    <input matInput name="adresse" placeholder="Adresse" type="text"
+                                           [(ngModel)]="model.adresse">
+                                </mat-form-field>
+                            </div>
+                            <div class="pb-1">
+                                <mat-form-field style="width: 100%">
+                                    <mat-select [(value)]="model.type" placeholder="Type Utilisateur" (change)="onChangeInit()" disableRipple  >
+                                        <mat-option value="EMPLOYE">Employé</mat-option>
+                                        <mat-option value="ETUDIANT">Etudiant</mat-option>
+                                        <mat-option value="ENSEIGNANT">Enseignant</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <!--for the Etudiant-->
+                            <div *ngIf="model.type=='ETUDIANT'" id="EtudiantSpecificField">
+                                <div class="pb-1">
+                                    <mat-form-field style="width: 100%">
+                                        <input matInput name="num_ins" placeholder="Numero d'inscription" type="number"
+                                               [(ngModel)]="model.etu_num_inscription">
+                                    </mat-form-field>
+                                </div>
+                                <div class="pb-1">
+                                    <mat-form-field style="width: 100%">
+                                        <input matInput name="annee_admi" placeholder="Annee d'admission" type="number"
+                                               [(ngModel)]="model.etu_annee_admission">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <!--for the Employe-->
+                            <div *ngIf="model.type=='EMPLOYE'" id="EmployeSpecificField">
+                                <div class="pb-1">
+                                    <mat-form-field style="width: 100%">
+                                        <input matInput name="empl_poste" placeholder="Poste de l'employé" type="text"
+                                               [(ngModel)]="model.empl_poste">
+                                    </mat-form-field>
+                                </div>
 
-                        </div>
-                        <button mat-raised-button color="primary" class="btn-block" type="submit" (click)="onSubmit()">
-                               <!-- [disabled]="!form.valid"--> Create your account
-                        </button>
+                            </div>
+                            <!--for the el Enseignant-->
+                            <div *ngIf="model.type=='ENSEIGNANT'" id="EnseignantSpecificField">
+                                <div class="pb-1">
+                                    <mat-form-field style="width: 100%">
+                                        <input matInput name="ens_grade" placeholder="Grade de l'enseignant" type="text"
+                                               [(ngModel)]="model.ens_grade">
+                                    </mat-form-field>
+                                </div>
+                                <div class="pb-1">
+                                    <mat-form-field style="width: 100%">
+                                        <mat-select [(value)]="model.ens_type_contrat" placeholder="Type contrat">
+                                            <mat-option value="CONTRACTUEL">Contractuel</mat-option>
+                                            <mat-option value="VACATAIRE">Vacataire</mat-option>
+                                            <mat-option value="EXPERT">Expert</mat-option>
+                                            <mat-option value="AUTRE">Autre</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="pb-1">
+                                <mat-checkbox>I have read and agree to the terms of service.</mat-checkbox>
+
+                            </div>
+                            <button mat-raised-button color="primary" class="btn-block" type="submit"
+                                    (click)="onSubmit()">
+                                <!-- [disabled]="!form.valid"--> Create your account
+                            </button>
                             {{model|json}}
                         </div>
                         <!--            <div class="pt-1 pb-1 text-xs-center">

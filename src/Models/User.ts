@@ -1,3 +1,4 @@
+import {AccountTypeEnum} from "./AccountTypeEnum";
 /**
  * Created by GAST-LEE on 12/04/2018.
  */
@@ -13,7 +14,7 @@ export class User {
   date_naissance: string;
   num_cin: string;
   adresse: string;
-  public type: string;
+  public type: AccountTypeEnum;
 }
 
 
