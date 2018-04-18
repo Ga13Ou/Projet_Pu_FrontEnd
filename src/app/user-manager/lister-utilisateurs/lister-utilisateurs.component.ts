@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {BackEndServiceService} from "../../DA/back-end-service.service";
 import {AccountTypeEnum} from "../../../Models/AccountTypeEnum";
-import {MatTableDataSource} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatTableDataSource} from "@angular/material";
 import {Observable} from "rxjs/Observable";
+import {User} from "../../../Models/User";
+import {PerfectScrollbarConfigInterface} from "ngx-perfect-scrollbar";
 
 @Component({
     selector: 'app-lister-utilisateurs',
@@ -11,18 +13,20 @@ import {Observable} from "rxjs/Observable";
 })
 export class ListerUtilisateursComponent implements OnInit {
 
-    constructor(private userService: BackEndServiceService) {
+    constructor(private userService: BackEndServiceService, public dialog: MatDialog) {
     }
 
     private isDataAvailable = false;    //to solve the async call of data, page is loaded before getting data
                                         //TODO change it after learning about async and await....
-    private users:Element[];
-    private usersDataSource=new MatTableDataSource(this.users);
-    displayedColumns = ['nom', 'prenom', 'email', 'type','Delete','Edit'];
+    private users: Element[];
+    private usersDataSource = new MatTableDataSource(this.users);
+    displayedColumns = ['nom', 'prenom', 'email', 'type', 'Delete', 'Edit'];
+    private userToUpdate;
+    private updateSuccessIndicator = false;
 
     ngOnInit() {
         console.log(this.users);
-       this.userService.getAll().then((result: any) => {
+        this.userService.getAll().then((result: any) => {
             this.usersDataSource.data = result.data.users;
             this.isDataAvailable = true;
 
@@ -31,27 +35,84 @@ export class ListerUtilisateursComponent implements OnInit {
             console.error(err);
         });
 
-    }
-onButtonDeleteClick(id:string){
-        this.userService.delete(id).then(result=>{
-            for(var i=0;i<this.usersDataSource.data.length;i++){
-                if(this.usersDataSource.data[i]._id==id){
-                    this.usersDataSource.data.splice(i,1);
+        //for updating the matTable in case of  an update (not required for now)
+        this.userService.userUpdated.subscribe(result=>{
+            this.userToUpdate=result;
+            for (var i = 0; i < this.usersDataSource.data.length; i++) {
+                if (this.usersDataSource.data[i]._id == this.userToUpdate._id) {
+                    this.usersDataSource.data[i]=this.userToUpdate;
                     break;
                 }
             }
-            this.usersDataSource=new MatTableDataSource(this.usersDataSource.data); //workaround for refreshing the table after delete
+            this.usersDataSource = new MatTableDataSource(this.usersDataSource.data);
         });
-}
-    onButtonEditClick(id:string){
+    }
 
+    onButtonDeleteClick(id: string) {
+        this.userService.delete(id).then(result => {
+            for (var i = 0; i < this.usersDataSource.data.length; i++) {
+                if (this.usersDataSource.data[i]._id == id) {
+                    this.usersDataSource.data.splice(i, 1);
+                    break;
+                }
+            }
+            this.usersDataSource = new MatTableDataSource(this.usersDataSource.data); //workaround for refreshing the table after delete
+        });
+    }
+
+
+    onButtonEditClick(id: string) {
+        for (var i = 0; i < this.usersDataSource.data.length; i++) {
+            if (this.usersDataSource.data[i]._id == id) {
+                this.userToUpdate = this.usersDataSource.data[i];
+                break;
+            }
+        }
+
+        let dialogRef = this.dialog.open(DialogUpdateUser, {
+            width: '500px',
+            maxHeight: '750px',
+            data: {user: this.userToUpdate, updateSuccess: this.updateSuccessIndicator}
+        });
     }
 }
 
 export interface Element {
-    _id:string;
+    _id: string;
     nom: string;
     prenom: string;
     email: string;
     type: string;
+}
+
+@Component({
+    selector: 'dialog-update-user',
+    templateUrl: 'dialog-update-user.html',
+})
+export class DialogUpdateUser implements OnInit{
+    private oldUser:any;
+    public config: PerfectScrollbarConfigInterface = {};
+
+    constructor(public dialogRef: MatDialogRef<DialogUpdateUser>,
+                @Inject(MAT_DIALOG_DATA) public data: any, private userService: BackEndServiceService) {
+    }
+
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+    ngOnInit() {
+       this.oldUser= Object.assign({},this.data.user);
+      delete this.oldUser.mot_de_passe;
+
+    }
+    onSubmit() {
+        this.userService.update(this.oldUser).then(result => {
+
+
+          this.userService.userUpdated.emit(this.oldUser);
+            this.dialogRef.close();
+        }).catch(err=>{
+            this.data.user=this.oldUser;
+        });
+    }
 }

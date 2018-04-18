@@ -4,17 +4,19 @@ import {User} from '../../Models/User';
 import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
 import {UniversalUserForm} from "../../Models/UniversalUserForm";
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 
 
 @Injectable()
 export class BackEndServiceService {
     result: any;
+    public userUpdated: EventEmitter<User> = new EventEmitter();
 
     constructor(private http: HttpClient, private router: Router) {
     }
 
     getAll() {
-        let result=new Promise((resolve,reject)=> {
+        let result = new Promise((resolve, reject) => {
             this.http.get<any>(environment.SERVER_URL + '/utilisateur/all?page=0&limit=0').toPromise()
                 .then((result: any) => {
                     if (result.status == 1) {
@@ -69,7 +71,7 @@ export class BackEndServiceService {
         return new Promise((resolve, reject) => {
             this.http.post(environment.SERVER_URL + "/utilisateur/subscribe", body).toPromise()
                 .then((result: any) => {
-                console.log(result.status);
+                    console.log(result.status);
                     if (result.status == 1) {
                         resolve(result);
                     }
@@ -85,11 +87,13 @@ export class BackEndServiceService {
     }
 
     update(user: User) {
-        return this.http.put('/api/users/' + user.id, user);
+        console.log(JSON.stringify({user}));
+        let body = JSON.parse(JSON.stringify({user}));
+        return this.http.post(environment.SERVER_URL + "/utilisateur/update", body).toPromise();
     }
 
     delete(id: string) {
-        return this.http.get(environment.SERVER_URL+"/utilisateur/delete?id=" + id).toPromise();
+        return this.http.get(environment.SERVER_URL + "/utilisateur/delete?id=" + id).toPromise();
     }
 
 }
