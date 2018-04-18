@@ -1,6 +1,6 @@
-<div *ngIf="isDataAvailable" class="list_Users">
+<div class="list_Users">
 
-  <mat-table #table [dataSource]="users">
+  <mat-table #table [dataSource]="usersDataSource">
 
     <ng-container matColumnDef="nom">
       <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
@@ -18,8 +18,17 @@
     </ng-container>
 
     <ng-container matColumnDef="type">
-      <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+    <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+  </ng-container>
+
+    <ng-container matColumnDef="Delete">
+      <mat-header-cell *matHeaderCellDef> Supprimer</mat-header-cell>
+      <mat-cell *matCellDef="let element"> <button mat-button (click)="onButtonDeleteClick(element._id)"><i class="material-icons">highlight_off</i></button> </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Edit">
+      <mat-header-cell *matHeaderCellDef> Modifier</mat-header-cell>
+      <mat-cell *matCellDef="let element"> <button mat-button (click)="onButtonEditClick(element._id)"><i class="material-icons">mode_edit</i></button> </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

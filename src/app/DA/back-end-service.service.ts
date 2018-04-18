@@ -88,8 +88,8 @@ export class BackEndServiceService {
         return this.http.put('/api/users/' + user.id, user);
     }
 
-    delete(id: number) {
-        return this.http.delete('/api/users/' + id);
+    delete(id: string) {
+        return this.http.get(environment.SERVER_URL+"/utilisateur/delete?id=" + id).toPromise();
     }
 
 }
