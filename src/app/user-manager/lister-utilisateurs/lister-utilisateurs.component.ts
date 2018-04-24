@@ -5,6 +5,8 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatTableDataSource} from "@ang
 import {Observable} from "rxjs/Observable";
 import {User} from "../../../Models/User";
 import {PerfectScrollbarConfigInterface} from "ngx-perfect-scrollbar";
+import swal from 'sweetalert2';
+
 
 @Component({
     selector: 'app-lister-utilisateurs',
@@ -36,11 +38,11 @@ export class ListerUtilisateursComponent implements OnInit {
         });
 
         //for updating the matTable in case of  an update (not required for now)
-        this.userService.userUpdated.subscribe(result=>{
-            this.userToUpdate=result;
+        this.userService.userUpdated.subscribe(result => {
+            this.userToUpdate = result;
             for (var i = 0; i < this.usersDataSource.data.length; i++) {
                 if (this.usersDataSource.data[i]._id == this.userToUpdate._id) {
-                    this.usersDataSource.data[i]=this.userToUpdate;
+                    this.usersDataSource.data[i] = this.userToUpdate;
                     break;
                 }
             }
@@ -49,15 +51,35 @@ export class ListerUtilisateursComponent implements OnInit {
     }
 
     onButtonDeleteClick(id: string) {
-        this.userService.delete(id).then(result => {
-            for (var i = 0; i < this.usersDataSource.data.length; i++) {
-                if (this.usersDataSource.data[i]._id == id) {
-                    this.usersDataSource.data.splice(i, 1);
-                    break;
-                }
+        swal({
+            title: 'Vous etes sûr?',
+            text: "Cette action est irreversible",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#08a414',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, supprimer l\'utilisateur!',
+        }).then((result) => {
+            if (result.value) {
+                this.userService.delete(id).then(result => {
+                    for (var i = 0; i < this.usersDataSource.data.length; i++) {
+                        if (this.usersDataSource.data[i]._id == id) {
+                            this.usersDataSource.data.splice(i, 1);
+                            break;
+                        }
+                    }
+                    swal({
+                        title: 'Supprimé',
+                        text: "l'utilisateur a été supprimé",
+                        type: 'success',
+                        showConfirmButton: false,
+                        timer: 3000,
+                    });
+                    this.usersDataSource = new MatTableDataSource(this.usersDataSource.data); //workaround for refreshing the table after delete
+                });
             }
-            this.usersDataSource = new MatTableDataSource(this.usersDataSource.data); //workaround for refreshing the table after delete
         });
+
     }
 
 
@@ -89,8 +111,8 @@ export interface Element {
     selector: 'dialog-update-user',
     templateUrl: 'dialog-update-user.html',
 })
-export class DialogUpdateUser implements OnInit{
-    private oldUser:any;
+export class DialogUpdateUser implements OnInit {
+    private oldUser: any;
     public config: PerfectScrollbarConfigInterface = {};
 
     constructor(public dialogRef: MatDialogRef<DialogUpdateUser>,
@@ -100,19 +122,31 @@ export class DialogUpdateUser implements OnInit{
     onNoClick(): void {
         this.dialogRef.close();
     }
+
     ngOnInit() {
-       this.oldUser= Object.assign({},this.data.user);
-      delete this.oldUser.mot_de_passe;
+        this.oldUser = Object.assign({}, this.data.user);
+        delete this.oldUser.mot_de_passe;
 
     }
+
     onSubmit() {
         this.userService.update(this.oldUser).then(result => {
 
 
-          this.userService.userUpdated.emit(this.oldUser);
+            this.userService.userUpdated.emit(this.oldUser);
             this.dialogRef.close();
-        }).catch(err=>{
-            this.data.user=this.oldUser;
+            swal({
+                type: 'success',
+                title: 'Utilisateur modifié avec succès...',
+                showConfirmButton: false,
+                timer: 3000,
+            });
+        }).catch(err => {
+            this.data.user = this.oldUser;
+            swal({
+                type: 'error',
+                title: 'Une erreur s\'est produite.',
+            });
         });
     }
 }

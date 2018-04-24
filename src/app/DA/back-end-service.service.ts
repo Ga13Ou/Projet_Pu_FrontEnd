@@ -77,7 +77,7 @@ export class BackEndServiceService {
                     }
                     else {
                         console.log(result.error.message);
-                        reject();
+                        reject(result);
                     }
                 }).catch(err => {
                 console.error(err);

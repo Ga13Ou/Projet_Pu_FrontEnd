@@ -6,6 +6,7 @@ import {User} from '../../../Models/User';
 import {BackEndServiceService} from "../../DA/back-end-service.service";
 import {Enseignant} from "../../../Models/Enseignant";
 import {UniversalUserForm} from "../../../Models/UniversalUserForm";
+import swal from 'sweetalert2';
 
 
 /*const password = new FormControl('', Validators.required);
@@ -34,12 +35,27 @@ export class AjoutEtudiantComponent implements OnInit {
   onSubmit() {
     console.log(this.model);
     this.userService.create(this.model).then((result)=>{
+        swal({
+            type: 'success',
+            title: 'Utilisateur ajouté avec succès...',
+            showConfirmButton: false,
+            timer: 3000,
+        });
         this.router.navigate( ['/'] );
-    }).catch(err=>{console.error(err)});
-    /*this.router.navigate( ['/dashboard'] );*/
+
+    }).catch((err:any)=>{console.error(err);
+        if(err.status==2) {
+            swal({
+                type: 'error',
+                title: 'Une erreur s\'est produite.',
+                text: err.error.message,
+            });
+        }});
+
+
   }
   onChangeInit(){
-   delete this.model.empl_poste;
+    delete this.model.empl_poste;
     delete this.model.ens_grade;
     delete this.model.ens_type_contrat;
     delete this.model.etu_num_inscription;
