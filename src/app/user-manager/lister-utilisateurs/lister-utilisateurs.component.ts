@@ -59,6 +59,7 @@ export class ListerUtilisateursComponent implements OnInit {
             confirmButtonColor: '#08a414',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Oui, supprimer l\'utilisateur!',
+            cancelButtonText: 'annuler'
         }).then((result) => {
             if (result.value) {
                 this.userService.delete(id).then(result => {
