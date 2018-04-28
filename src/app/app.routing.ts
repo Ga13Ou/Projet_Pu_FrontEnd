@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent, AuthLayoutComponent } from './core';
 import {AuthGuardService as AuthGuard} from "./DA/auth-guard.service";
+import {MatieresModule} from "./matieres/matieres.module";
 
 export const AppRoutes: Routes = [{
   path: '',
@@ -22,6 +23,9 @@ export const AppRoutes: Routes = [{
   }, {
     path: 'filieres',
     loadChildren: './filieres/filieres.module#FilieresModule'
+  }, {
+    path: 'matieres',
+    loadChildren: './matieres/matieres.module#MatieresModule'
   }, {
     path: 'material',
     loadChildren: './material/material.module#MaterialComponentsModule'

@@ -68,6 +68,17 @@ const MENUITEMS = [
     ]
   },
   {
+    state: 'Matiere',
+    name: 'Matiere',
+    type: 'sub',
+    icon: 'apps',
+    children: [
+      /* {state: 'create', name: 'CREATE'},*/
+      {state: 'list', name:'List'},
+
+    ]
+  },
+  {
     state: 'widgets',
     name: 'WIDGETS',
     type: 'link',
