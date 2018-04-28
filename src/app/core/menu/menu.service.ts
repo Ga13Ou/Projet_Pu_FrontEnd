@@ -77,6 +77,18 @@ const MENUITEMS = [
       {state: 'list', name:'List'},
 
     ]
+  }, {
+    state: 'departements',
+    name: 'Departement',
+    type: 'sub',
+    icon: 'apps',
+    children: [
+      /* {state: 'create', name: 'CREATE'},*/
+      {state: 'add', name:'Ajouter'},
+      {state: 'list', name:'List'},
+
+
+    ]
   },
   {
     state: 'widgets',

@@ -24,6 +24,9 @@ export const AppRoutes: Routes = [{
     path: 'filieres',
     loadChildren: './filieres/filieres.module#FilieresModule'
   }, {
+    path: 'departements',
+    loadChildren: './departements/departements.module#DepartementsModule'
+  }, {
     path: 'matieres',
     loadChildren: './matieres/matieres.module#MatieresModule'
   }, {

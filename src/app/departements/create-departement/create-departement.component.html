@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-card-title>Ajouter Departement</mat-card-title>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div >
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Nom du departement" [formControl]="form.controls['nom']">
+            <small *ngIf="form.controls['nom'].hasError() && form.controls['nom'].touched" class="mat-text-warn">Vérifier vos informations</small>
+          </mat-form-field>
+        </div>
+
+
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <mat-select placeholder="Chef departement" [formControl]="form.controls['chef_departement']">
+              <mat-option *ngFor="let enseignant of enseignants" [value]="enseignant._id">
+                {{ enseignant.nom }} {{enseignant.prenom}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <small *ngIf="form.controls['chef_departement'].hasError() && form.controls['chef_departement'].touched" class="mat-text-warn">Vérifier vos informations</small>
+        </div>
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <mat-select placeholder="Enseignant" [formControl]="form.controls['enseignantsDepartement']" multiple>
+              <mat-option *ngFor="let enseignant of enseignants" [value]="enseignant._id">
+                {{ enseignant.nom }} {{enseignant.prenom}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <hr>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Ajouter</button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>
