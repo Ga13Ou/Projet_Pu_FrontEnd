@@ -42,6 +42,7 @@
                     </mat-form-field>
                 </div>
 
+
                 <div class="pb-1">
                     <mat-form-field style="width: 100%">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -72,6 +73,16 @@
                     </mat-form-field>
                 </div>
                 <!--for the Etudiant-->
+
+
+                <div class="pb-1" *ngIf="oldUser.type=='ETUDIANT'">
+                  <mat-form-field style="width: 100%">
+                    <select name="fil" [(ngModel)]="oldUser.filiere._id">
+                      <option *ngFor="let filiere of listFiliere" value="{{filiere._id}}">{{filiere.nom}} {{filiere.niveau}}/{{filiere.groupe}}</option>
+                    </select>
+                  </mat-form-field>
+                </div>
+
                 <div *ngIf="oldUser.type=='ETUDIANT'" id="EtudiantSpecificField">
                     <div class="pb-1">
                         <mat-form-field style="width: 100%">

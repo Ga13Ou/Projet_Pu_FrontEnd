@@ -20,6 +20,9 @@ export const AppRoutes: Routes = [{
     path: 'user-manager',
     loadChildren: './user-manager/user-manager.module#UserManagerModule'
   }, {
+    path: 'filieres',
+    loadChildren: './filieres/filieres.module#FilieresModule'
+  }, {
     path: 'material',
     loadChildren: './material/material.module#MaterialComponentsModule'
   }, {

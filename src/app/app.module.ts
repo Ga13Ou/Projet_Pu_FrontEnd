@@ -49,6 +49,8 @@ import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 import {BackEndServiceService} from "./DA/back-end-service.service";
 import {AuthGuardService} from "./DA/auth-guard.service";
+import { CreateFiliereComponent } from './create-filiere/create-filiere.component';
+import { EditFiliereComponent } from './edit-filiere/edit-filiere.component';
 
 
 

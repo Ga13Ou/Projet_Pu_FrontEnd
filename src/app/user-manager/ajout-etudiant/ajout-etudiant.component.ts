@@ -7,6 +7,7 @@ import {BackEndServiceService} from "../../DA/back-end-service.service";
 import {Enseignant} from "../../../Models/Enseignant";
 import {UniversalUserForm} from "../../../Models/UniversalUserForm";
 import swal from 'sweetalert2';
+import {Filiere} from '../../../Models/Filiere';
 
 
 /*const password = new FormControl('', Validators.required);
@@ -20,7 +21,8 @@ export class AjoutEtudiantComponent implements OnInit {
 
   public form: FormGroup;
   constructor(private fb: FormBuilder, private router: Router, private userService:BackEndServiceService) {}
-  private model= new UniversalUserForm();
+  public model= new UniversalUserForm();
+  public listFiliere : Filiere[] = [];
 
 
   ngOnInit() {
@@ -30,6 +32,9 @@ export class AjoutEtudiantComponent implements OnInit {
       password: password,
       confirmPassword: confirmPassword
     } );*/
+    this.userService.getAllFilieres(0,0).then(data=>{
+        this.listFiliere = data;
+    });
   }
 
   onSubmit() {

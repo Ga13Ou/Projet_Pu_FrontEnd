@@ -145,6 +145,13 @@
                                                [(ngModel)]="model.etu_annee_admission">
                                     </mat-form-field>
                                 </div>
+                                <div class="pb-1">
+                                  <mat-form-field style="width: 100%">
+                                    <select [(ngModel)]="model.filiere._id">
+                                      <option *ngFor="let filiere of listFiliere" value="{{filiere._id}}">{{filiere.nom}}</option>
+                                    </select>
+                                  </mat-form-field>
+                                </div>
                             </div>
                             <!--for the Employe-->
                             <div *ngIf="model.type=='EMPLOYE'" id="EmployeSpecificField">

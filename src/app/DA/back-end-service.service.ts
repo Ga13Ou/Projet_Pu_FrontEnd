@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {Router} from "@angular/router";
 import {UniversalUserForm} from "../../Models/UniversalUserForm";
 import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Filiere} from '../../Models/Filiere';
 
 
 @Injectable()
@@ -16,7 +17,7 @@ export class BackEndServiceService {
     }
 
     getAll() {
-        let result = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.http.get<any>(environment.SERVER_URL + '/utilisateur/all?page=0&limit=0').toPromise()
                 .then((result: any) => {
                     if (result.status == 1) {
@@ -28,8 +29,8 @@ export class BackEndServiceService {
                 console.error(err)
             });
         });
-        return result;
     }
+
 
     login(user: User) {
         console.log(JSON.stringify({user}));
@@ -95,5 +96,81 @@ export class BackEndServiceService {
     delete(id: string) {
         return this.http.get(environment.SERVER_URL + "/utilisateur/delete?id=" + id).toPromise();
     }
+
+    getAllFilieres(page : number , limit : number){
+      return new Promise<Filiere[]>((resolve, reject) => {
+        this.http.get<any>(environment.SERVER_URL + '/programme/filiere/getAllFilieres?page='+page+'&limit='+limit).toPromise()
+          .then((result: any) => {
+            if (result.status == 1) {
+              resolve(result.data.filieres);
+            }
+            else
+              reject()
+          }).catch(err => {
+          console.error(err)
+        });
+      });
+    }
+
+  createFiliere(filiere) {
+    let body = JSON.parse(JSON.stringify(filiere));
+    return new Promise((resolve, reject) => {
+      this.http.post(environment.SERVER_URL + "/programme/filiere/create", body).toPromise()
+        .then((result: any) => {
+          console.log(result.status);
+          if (result.status == 1) {
+            resolve(result);
+          }
+          else {
+            console.log(result.error.message);
+            reject(result);
+          }
+        }).catch(err => {
+        console.error(err);
+      })
+
+    })
+  }
+  editFiliere(filiere) {
+    let body = JSON.parse(JSON.stringify(filiere));
+    console.log(environment.SERVER_URL + "/programme/filiere/update");
+    console.log(body);
+    return new Promise((resolve, reject) => {
+      this.http.post(environment.SERVER_URL + "/programme/filiere/update", body).toPromise()
+        .then((result: any) => {
+          console.log(result.status);
+          if (result.status == 1) {
+            resolve(result);
+          }
+          else {
+            console.log(result.error.message);
+            reject(result);
+          }
+        }).catch(err => {
+        console.error(err);
+      })
+
+    })
+  }
+
+  getFiliereById(id : String){
+    return new Promise<Filiere>((resolve, reject) => {
+      this.http.get<any>(environment.SERVER_URL + '/programme/filiere/getFiliereByID?id='+id).toPromise()
+        .then((result: any) => {
+          if (result.status == 1) {
+            resolve(result.data.filiere);
+          }
+          else
+            reject()
+        }).catch(err => {
+        console.error(err)
+      });
+    });
+  }
+
+  deleteFiliere(id: string) {
+    return this.http.get(environment.SERVER_URL + "/programme/filiere/delete?id=" + id).toPromise();
+  }
+
 
 }

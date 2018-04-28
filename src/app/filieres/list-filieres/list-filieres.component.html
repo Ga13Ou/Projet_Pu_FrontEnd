@@ -1,0 +1,29 @@
+<button mat-raised-button color="primary" style="position: absolute;
+right: 30px;
+width: 170px;" routerLink="/filieres/add">Ajouter</button>
+<mat-table #table [dataSource]="filtreDataSource">
+  <ng-container matColumnDef="{{displayedColumns[0]}}">
+    <mat-header-cell *matHeaderCellDef> {{displayedColumns[0]}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.nom}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="{{displayedColumns[1]}}">
+    <mat-header-cell *matHeaderCellDef> {{displayedColumns[1]}}  </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.niveau}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="{{displayedColumns[2]}}">
+    <mat-header-cell *matHeaderCellDef> {{displayedColumns[2]}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.groupe}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="{{displayedColumns[3]}}">
+    <mat-header-cell *matHeaderCellDef> {{displayedColumns[3]}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <i (click)="onButtonDeleteClick(element._id)" class="material-icons">highlight_off</i></mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="{{displayedColumns[4]}}">
+    <mat-header-cell *matHeaderCellDef> {{displayedColumns[4]}} </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <i [routerLink]="['/filieres/edit', element._id]" class="material-icons">mode_edit</i> </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

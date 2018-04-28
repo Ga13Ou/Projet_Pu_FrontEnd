@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-title>Ajouter Filiére</mat-card-title>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div >
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Intitulé" [formControl]="form.controls['nom']">
+            <small *ngIf="form.controls['nom'].hasError() && form.controls['nom'].touched" class="mat-text-warn">Vérifier vos informations</small>
+          </mat-form-field>
+        </div>
+
+
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Niveau" [formControl]="form.controls['niveau']">
+          </mat-form-field>
+          <small *ngIf="form.controls['niveau'].hasError() && form.controls['niveau'].touched" class="mat-text-warn">Vérifier vos informations</small>
+        </div>
+
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Gruope" [formControl]="form.controls['groupe']">
+          </mat-form-field>
+          <small *ngIf="form.controls['groupe'].hasError() && form.controls['groupe'].touched" class="mat-text-warn">Vérifier vos informations</small>
+        </div>
+      </div>
+    </mat-card-content>
+    <hr>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Ajouter</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

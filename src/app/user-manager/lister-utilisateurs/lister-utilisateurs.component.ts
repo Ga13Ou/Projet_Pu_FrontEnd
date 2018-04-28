@@ -6,6 +6,8 @@ import {Observable} from "rxjs/Observable";
 import {User} from "../../../Models/User";
 import {PerfectScrollbarConfigInterface} from "ngx-perfect-scrollbar";
 import swal from 'sweetalert2';
+import {Filiere} from '../../../Models/Filiere';
+import {UniversalUserForm} from '../../../Models/UniversalUserForm';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class ListerUtilisateursComponent implements OnInit {
 
     private isDataAvailable = false;    //to solve the async call of data, page is loaded before getting data
                                         //TODO change it after learning about async and await....
-    private users: Element[];
+    private users: User[];
     private usersDataSource = new MatTableDataSource(this.users);
     displayedColumns = ['nom', 'prenom', 'email', 'type', 'Delete', 'Edit'];
     private userToUpdate;
@@ -36,6 +38,8 @@ export class ListerUtilisateursComponent implements OnInit {
         }).catch(err => {
             console.error(err);
         });
+
+
 
         //for updating the matTable in case of  an update (not required for now)
         this.userService.userUpdated.subscribe(result => {
@@ -91,7 +95,6 @@ export class ListerUtilisateursComponent implements OnInit {
                 break;
             }
         }
-
         let dialogRef = this.dialog.open(DialogUpdateUser, {
             width: '500px',
             maxHeight: '750px',
@@ -100,22 +103,24 @@ export class ListerUtilisateursComponent implements OnInit {
     }
 }
 
+/*
 export interface Element {
     _id: string;
     nom: string;
     prenom: string;
     email: string;
     type: string;
-}
+}*/
 
 @Component({
     selector: 'dialog-update-user',
     templateUrl: 'dialog-update-user.html',
 })
 export class DialogUpdateUser implements OnInit {
-    private oldUser: any;
+    public oldUser: UniversalUserForm;
     public config: PerfectScrollbarConfigInterface = {};
-
+    public listFiliere : Filiere[] = [];
+    public filiereId : string = "";
     constructor(public dialogRef: MatDialogRef<DialogUpdateUser>,
                 @Inject(MAT_DIALOG_DATA) public data: any, private userService: BackEndServiceService) {
     }
@@ -126,8 +131,12 @@ export class DialogUpdateUser implements OnInit {
 
     ngOnInit() {
         this.oldUser = Object.assign({}, this.data.user);
+        this.oldUser.filiere = new Filiere();
         delete this.oldUser.mot_de_passe;
-
+        this.userService.getAllFilieres(0,0).then(data=>{
+          this.listFiliere = data;
+          console.log("jerrrrr",data);
+        });
     }
 
     onSubmit() {
