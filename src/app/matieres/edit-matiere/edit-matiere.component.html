@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-title>Modifier Matiere</mat-card-title>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <div >
+        <div class="mb-1">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Intitulé" [formControl]="form.controls['libelle']">
+
+          </mat-form-field>
+        </div>
+
+
+
+      </div>
+    </mat-card-content>
+    <hr>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Modifier</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

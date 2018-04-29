@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {UniversalUserForm} from "../../Models/UniversalUserForm";
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Filiere} from '../../Models/Filiere';
+import {Matiere} from "../../Models/Matiere";
 import {Departement} from "../../Models/Departement";
 
 
@@ -112,6 +113,36 @@ export class BackEndServiceService {
             });
         });
     }
+  getAllMatieres(page : number , limit : number){
+    return new Promise<Matiere[]>((resolve, reject) => {
+      this.http.get<any>(environment.SERVER_URL + '/programme/matiere/getAllMatieres?page='+page+'&limit='+limit).toPromise()
+        .then((result: any) => {
+          if (result.status == 1) {
+            resolve(result.data.matieres);
+          }
+          else
+            reject()
+        }).catch(err => {
+        console.error(err)
+      });
+    });
+  }
+  createFiliere(filiere) {
+    let body = JSON.parse(JSON.stringify(filiere));
+    return new Promise((resolve, reject) => {
+      this.http.post(environment.SERVER_URL + "/programme/filiere/create", body).toPromise()
+        .then((result: any) => {
+          console.log(result.status);
+          if (result.status == 1) {
+            resolve(result);
+          }
+          else {
+            console.log(result.error.message);
+            reject(result);
+          }
+        }).catch(err => {
+        console.error(err);
+      })
 
     createFiliere(filiere) {
         let body = JSON.parse(JSON.stringify(filiere));
@@ -132,7 +163,67 @@ export class BackEndServiceService {
 
         })
     }
+    })
+  }
 
+  createMatiere(matiere) {
+    let body = JSON.parse(JSON.stringify(matiere));
+    return new Promise((resolve, reject) => {
+      this.http.post(environment.SERVER_URL + "/programme/matiere/create", body).toPromise()
+        .then((result: any) => {
+          console.log(result.status);
+          if (result.status == 1) {
+            resolve(result);
+          }
+          else {
+            console.log(result.error.message);
+            reject(result);
+          }
+        }).catch(err => {
+        console.error(err);
+      })
+
+    })
+  }
+  editFiliere(filiere) {
+    let body = JSON.parse(JSON.stringify(filiere));
+    console.log(environment.SERVER_URL + "/programme/filiere/update");
+    console.log(body);
+    return new Promise((resolve, reject) => {
+      this.http.post(environment.SERVER_URL + "/programme/filiere/update", body).toPromise()
+        .then((result: any) => {
+          console.log(result.status);
+          if (result.status == 1) {
+            resolve(result);
+          }
+          else {
+            console.log(result.error.message);
+            reject(result);
+          }
+        }).catch(err => {
+        console.error(err);
+      })
+
+    })
+  }
+  editMatiere(matiere) {
+    let body = JSON.parse(JSON.stringify(matiere));
+    console.log(environment.SERVER_URL + "/programme/matiere/update");
+    console.log(body);
+    return new Promise((resolve, reject) => {
+      this.http.post(environment.SERVER_URL + "/programme/matiere/update", body).toPromise()
+        .then((result: any) => {
+          console.log(result.status);
+          if (result.status == 1) {
+            resolve(result);
+          }
+          else {
+            console.log(result.error.message);
+            reject(result);
+          }
+        }).catch(err => {
+        console.error(err);
+      })
     editFiliere(filiere) {
         let body = JSON.parse(JSON.stringify(filiere));
         console.log(environment.SERVER_URL + "/programme/filiere/update");
@@ -152,6 +243,22 @@ export class BackEndServiceService {
                 console.error(err);
             })
 
+    })
+  }
+  getFiliereById(id : String){
+    return new Promise<Filiere>((resolve, reject) => {
+      this.http.get<any>(environment.SERVER_URL + '/programme/filiere/getFiliereByID?id='+id).toPromise()
+        .then((result: any) => {
+          if (result.status == 1) {
+            resolve(result.data.filiere);
+          }
+          else
+            reject()
+        }).catch(err => {
+        console.error(err)
+      });
+    });
+  }
         })
     }
 
@@ -169,7 +276,28 @@ export class BackEndServiceService {
             });
         });
     }
+  getMatiereById(id : String){
+    return new Promise<Matiere>((resolve, reject) => {
+      this.http.get<any>(environment.SERVER_URL + '/programme/matiere/getMatiereByID?id='+id).toPromise()
+        .then((result: any) => {
+          if (result.status == 1) {
+            resolve(result.data.matiere);
+          }
+          else
+            reject()
+        }).catch(err => {
+        console.error(err)
+      });
+    });
+  }
 
+  deleteFiliere(id: string) {
+    return this.http.get(environment.SERVER_URL + "/programme/filiere/delete?id=" + id).toPromise();
+  }
+
+  deleteMatiere(id: string) {
+    return this.http.get(environment.SERVER_URL + "/programme/matiere/delete?id=" + id).toPromise();
+  }
     deleteFiliere(id: string) {
         return this.http.get(environment.SERVER_URL + "/programme/filiere/delete?id=" + id).toPromise();
     }
