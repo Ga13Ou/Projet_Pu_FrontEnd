@@ -65,23 +65,23 @@
                 </div>
                 <div class="pb-1">
                     <mat-form-field style="width: 100%">
-                        <mat-select [(value)]="oldUser.type" placeholder="Type Utilisateur" (change)="onChangeInit()" disableRipple [disabled]="true"  >
+                        <mat-select  placeholder="Type Utilisateur" (change)="onChangeInit()" [(ngModel)]="oldUser.type" name="type" disableRipple [disabled]="true" >
                             <mat-option value="EMPLOYE">Employé</mat-option>
                             <mat-option value="ETUDIANT">Etudiant</mat-option>
                             <mat-option value="ENSEIGNANT">Enseignant</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
+                <!--<div class="pb-1">
+                    <mat-form-field style="width: 100%">
+                        <mat-select [(value)]="oldUser.type" placeholder="Type Utilisateur" (change)="onChangeInit()" disableRipple [disabled]="true"  >
+                            <mat-option value="EMPLOYE">Employé</mat-option>
+                            <mat-option value="ETUDIANT">Etudiant</mat-option>
+                            <mat-option value="ENSEIGNANT">Enseignant</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>-->
                 <!--for the Etudiant-->
-
-
-                <div class="pb-1" *ngIf="oldUser.type=='ETUDIANT'">
-                  <mat-form-field style="width: 100%">
-                    <select name="fil" [(ngModel)]="oldUser.filiere._id">
-                      <option *ngFor="let filiere of listFiliere" value="{{filiere._id}}">{{filiere.nom}} {{filiere.niveau}}/{{filiere.groupe}}</option>
-                    </select>
-                  </mat-form-field>
-                </div>
 
                 <div *ngIf="oldUser.type=='ETUDIANT'" id="EtudiantSpecificField">
                     <div class="pb-1">
@@ -94,6 +94,13 @@
                         <mat-form-field style="width: 100%">
                             <input matInput name="annee_admi" placeholder="Annee d'admission" type="number"
                                    [(ngModel)]="oldUser.etu_annee_admission">
+                        </mat-form-field>
+                    </div>
+                    <div class="pb-1">
+                        <mat-form-field style="width: 100%">
+                            <mat-select  placeholder="Filiere" [(ngModel)]="oldUser.etu_filiere" name="filiere" disableRipple  >
+                                <mat-option *ngFor="let filiere of listFiliere" value="{{filiere._id}}">{{filiere.nom}} {{filiere.niveau}}/{{filiere.groupe}}</mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </div>
                 </div>

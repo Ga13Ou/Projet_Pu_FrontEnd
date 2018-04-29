@@ -65,5 +65,6 @@ export class AjoutEtudiantComponent implements OnInit {
     delete this.model.ens_type_contrat;
     delete this.model.etu_num_inscription;
     delete this.model.etu_annee_admission;
+    delete this.model.etu_filiere;
   }
 }

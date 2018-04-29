@@ -107,7 +107,7 @@
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                     <input matInput name="date_de_naissance" [matDatepicker]="picker"
-                                           [(ngModel)]="model.date_naissance"  >
+                                           [(ngModel)]="model.date_naissance" placeholder="Date de naissance" >
                                 </mat-form-field>
                             </div>
                             <div class="pb-1">
@@ -124,7 +124,7 @@
                             </div>
                             <div class="pb-1">
                                 <mat-form-field style="width: 100%">
-                                    <mat-select [(value)]="model.type" placeholder="Type Utilisateur" (change)="onChangeInit()" disableRipple  >
+                                    <mat-select  placeholder="Type Utilisateur" (change)="onChangeInit()" [(ngModel)]="model.type" name="type" disableRipple  >
                                         <mat-option value="EMPLOYE">Employé</mat-option>
                                         <mat-option value="ETUDIANT">Etudiant</mat-option>
                                         <mat-option value="ENSEIGNANT">Enseignant</mat-option>
@@ -147,9 +147,9 @@
                                 </div>
                                 <div class="pb-1">
                                   <mat-form-field style="width: 100%">
-                                    <select [(ngModel)]="model.filiere._id">
-                                      <option *ngFor="let filiere of listFiliere" value="{{filiere._id}}">{{filiere.nom}}</option>
-                                    </select>
+                                      <mat-select  placeholder="Filiere" [(ngModel)]="model.etu_filiere" name="filiere" disableRipple  >
+                                          <mat-option *ngFor="let filiere of listFiliere" value="{{filiere._id}}">{{filiere.nom}} {{filiere.niveau}}/{{filiere.groupe}}</mat-option>
+                                      </mat-select>
                                   </mat-form-field>
                                 </div>
                             </div>

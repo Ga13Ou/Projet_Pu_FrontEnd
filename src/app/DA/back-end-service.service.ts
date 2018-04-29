@@ -127,22 +127,6 @@ export class BackEndServiceService {
       });
     });
   }
-  createFiliere(filiere) {
-    let body = JSON.parse(JSON.stringify(filiere));
-    return new Promise((resolve, reject) => {
-      this.http.post(environment.SERVER_URL + "/programme/filiere/create", body).toPromise()
-        .then((result: any) => {
-          console.log(result.status);
-          if (result.status == 1) {
-            resolve(result);
-          }
-          else {
-            console.log(result.error.message);
-            reject(result);
-          }
-        }).catch(err => {
-        console.error(err);
-      })
 
     createFiliere(filiere) {
         let body = JSON.parse(JSON.stringify(filiere));
@@ -163,8 +147,6 @@ export class BackEndServiceService {
 
         })
     }
-    })
-  }
 
   createMatiere(matiere) {
     let body = JSON.parse(JSON.stringify(matiere));
@@ -211,39 +193,20 @@ export class BackEndServiceService {
     console.log(environment.SERVER_URL + "/programme/matiere/update");
     console.log(body);
     return new Promise((resolve, reject) => {
-      this.http.post(environment.SERVER_URL + "/programme/matiere/update", body).toPromise()
-        .then((result: any) => {
-          console.log(result.status);
-          if (result.status == 1) {
-            resolve(result);
-          }
-          else {
-            console.log(result.error.message);
-            reject(result);
-          }
-        }).catch(err => {
-        console.error(err);
-      })
-    editFiliere(filiere) {
-        let body = JSON.parse(JSON.stringify(filiere));
-        console.log(environment.SERVER_URL + "/programme/filiere/update");
-        console.log(body);
-        return new Promise((resolve, reject) => {
-            this.http.post(environment.SERVER_URL + "/programme/filiere/update", body).toPromise()
-                .then((result: any) => {
-                    console.log(result.status);
-                    if (result.status == 1) {
-                        resolve(result);
-                    }
-                    else {
-                        console.log(result.error.message);
-                        reject(result);
-                    }
-                }).catch(err => {
-                console.error(err);
-            })
-
-    })
+        this.http.post(environment.SERVER_URL + "/programme/matiere/update", body).toPromise()
+            .then((result: any) => {
+                console.log(result.status);
+                if (result.status == 1) {
+                    resolve(result);
+                }
+                else {
+                    console.log(result.error.message);
+                    reject(result);
+                }
+            }).catch(err => {
+            console.error(err);
+        })
+    });
   }
   getFiliereById(id : String){
     return new Promise<Filiere>((resolve, reject) => {
@@ -259,23 +222,7 @@ export class BackEndServiceService {
       });
     });
   }
-        })
-    }
 
-    getFiliereById(id: String) {
-        return new Promise<Filiere>((resolve, reject) => {
-            this.http.get<any>(environment.SERVER_URL + '/programme/filiere/getFiliereByID?id=' + id).toPromise()
-                .then((result: any) => {
-                    if (result.status == 1) {
-                        resolve(result.data.filiere);
-                    }
-                    else
-                        reject()
-                }).catch(err => {
-                console.error(err)
-            });
-        });
-    }
   getMatiereById(id : String){
     return new Promise<Matiere>((resolve, reject) => {
       this.http.get<any>(environment.SERVER_URL + '/programme/matiere/getMatiereByID?id='+id).toPromise()
@@ -298,11 +245,6 @@ export class BackEndServiceService {
   deleteMatiere(id: string) {
     return this.http.get(environment.SERVER_URL + "/programme/matiere/delete?id=" + id).toPromise();
   }
-    deleteFiliere(id: string) {
-        return this.http.get(environment.SERVER_URL + "/programme/filiere/delete?id=" + id).toPromise();
-    }
-
-
     //departements services
     addDepartement(departement) {
         return this.http.post(environment.SERVER_URL + "/programme/departement/create", departement).toPromise()

@@ -40,7 +40,6 @@ export class ListerUtilisateursComponent implements OnInit {
         });
 
 
-
         //for updating the matTable in case of  an update (not required for now)
         this.userService.userUpdated.subscribe(result => {
             this.userToUpdate = result;
@@ -104,13 +103,13 @@ export class ListerUtilisateursComponent implements OnInit {
 }
 
 /*
-export interface Element {
-    _id: string;
-    nom: string;
-    prenom: string;
-    email: string;
-    type: string;
-}*/
+ export interface Element {
+ _id: string;
+ nom: string;
+ prenom: string;
+ email: string;
+ type: string;
+ }*/
 
 @Component({
     selector: 'dialog-update-user',
@@ -119,8 +118,9 @@ export interface Element {
 export class DialogUpdateUser implements OnInit {
     public oldUser: UniversalUserForm;
     public config: PerfectScrollbarConfigInterface = {};
-    public listFiliere : Filiere[] = [];
-    public filiereId : string = "";
+    public listFiliere: Filiere[] = [];
+    public filiereId: string = "";
+
     constructor(public dialogRef: MatDialogRef<DialogUpdateUser>,
                 @Inject(MAT_DIALOG_DATA) public data: any, private userService: BackEndServiceService) {
     }
@@ -131,11 +131,12 @@ export class DialogUpdateUser implements OnInit {
 
     ngOnInit() {
         this.oldUser = Object.assign({}, this.data.user);
-        this.oldUser.filiere = new Filiere();
         delete this.oldUser.mot_de_passe;
-        this.userService.getAllFilieres(0,0).then(data=>{
-          this.listFiliere = data;
-          console.log("jerrrrr",data);
+        if (this.data.user.etu_filiere != null)
+            this.oldUser.etu_filiere = this.data.user.etu_filiere._id;
+        this.userService.getAllFilieres(0, 0).then(data => {
+            this.listFiliere = data;
+            console.log("jerrrrr", data);
         });
     }
 
