@@ -11,12 +11,13 @@ import swal from "sweetalert2";
 export class ListDepartementsComponent implements OnInit {
   private departements: Departement[] = [];
   public departementDataSource = new MatTableDataSource(this.departements);
-  displayedColumns = ['nom', 'chef departement', 'Delete', 'Edit'];
+  displayedColumns = ['nom', 'chef departement','Enseignants', 'Delete', 'Edit'];
   constructor(private backend:BackEndServiceService) { }
 
   ngOnInit() {
     this.backend.getAllDepartement(0,0).then(result => {
       this.departementDataSource.data = result;
+      console.log(this.departementDataSource.data);
     });
   }
   onButtonDeleteClick(id){

@@ -256,8 +256,7 @@ export class BackEndServiceService {
             this.http.get<any>(environment.SERVER_URL + '/programme/departement/getAllDepartements?page=' + page + '&limit=' + limit).toPromise()
                 .then((result: any) => {
                     if (result.status == 1) {
-                        resolve(result.data.matieres);
-                        //TODO change .matieres to .departements when rafaa fixes the backend
+                        resolve(result.data.departements);
                     }
                     else
                         reject()
