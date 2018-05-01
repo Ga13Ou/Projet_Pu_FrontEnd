@@ -1,6 +1,6 @@
 <button mat-raised-button color="primary" style="position: absolute;
 right: 30px;
-width: 170px;" routerLink="/filieres/add">Ajouter</button>
+width: 170px;" routerLink="/filieres/add" *ngIf="currentRole=='EMPLOYE'">Ajouter</button>
 <mat-table #table [dataSource]="filtreDataSource">
   <ng-container matColumnDef="{{displayedColumns[0]}}">
     <mat-header-cell *matHeaderCellDef> {{displayedColumns[0]}} </mat-header-cell>
