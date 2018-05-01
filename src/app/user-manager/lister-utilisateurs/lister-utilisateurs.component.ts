@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {BackEndServiceService} from "../../DA/back-end-service.service";
 import {AccountTypeEnum} from "../../../Models/AccountTypeEnum";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatTableDataSource} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSort, MatTableDataSource} from "@angular/material";
 import {Observable} from "rxjs/Observable";
 import {User} from "../../../Models/User";
 import {PerfectScrollbarConfigInterface} from "ngx-perfect-scrollbar";
@@ -18,15 +18,17 @@ import {UniversalUserForm} from '../../../Models/UniversalUserForm';
 export class ListerUtilisateursComponent implements OnInit {
 
     constructor(private userService: BackEndServiceService, public dialog: MatDialog) {
+        this.matTableInit();
     }
-
+    @ViewChild(MatSort) sort: MatSort;
     private isDataAvailable = false;    //to solve the async call of data, page is loaded before getting data
                                         //TODO change it after learning about async and await....
     private users: User[];
     private usersDataSource = new MatTableDataSource(this.users);
-    displayedColumns = ['nom', 'prenom', 'email', 'type', 'Delete', 'Edit'];
+    displayedColumns = ['nom', 'prenom', 'email', 'type'];
     private userToUpdate;
     private updateSuccessIndicator = false;
+    public currentRole;
 
     ngOnInit() {
         console.log(this.users);
@@ -51,6 +53,7 @@ export class ListerUtilisateursComponent implements OnInit {
             }
             this.usersDataSource = new MatTableDataSource(this.usersDataSource.data);
         });
+        this.usersDataSource.sort = this.sort;
     }
 
     onButtonDeleteClick(id: string) {
@@ -99,6 +102,13 @@ export class ListerUtilisateursComponent implements OnInit {
             maxHeight: '750px',
             data: {user: this.userToUpdate, updateSuccess: this.updateSuccessIndicator}
         });
+    }
+    matTableInit() {
+        this.currentRole = this.userService.getUserRole();
+        if (this.currentRole == 'EMPLOYE') {
+            this.displayedColumns.push('Delete');
+            this.displayedColumns.push('Edit');
+        }
     }
 }
 

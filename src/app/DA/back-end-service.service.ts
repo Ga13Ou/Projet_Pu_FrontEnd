@@ -36,7 +36,7 @@ export class BackEndServiceService {
 
 
     login(user: User) {
-        console.log(JSON.stringify({user}));
+        console.log(JSON.stringify(user));
         return new Promise((resolve, reject) => {
             this.http.post(environment.SERVER_URL + '/utilisateur' + '/login', user)
                 .toPromise()
@@ -67,6 +67,13 @@ export class BackEndServiceService {
 
     getById(id: number) {
         return this.http.get('/api/users/' + id);
+    }
+    getUserRole(){
+        let currentUser:User=JSON.parse(localStorage.getItem("currentUser"));
+        if(currentUser){
+            return currentUser.type;
+        }
+        else return "notConnected"
     }
 
     create(user: UniversalUserForm) {

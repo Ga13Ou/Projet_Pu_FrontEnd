@@ -9,6 +9,7 @@ export interface ChildrenItems {
   state: string;
   name: string;
   type?: string;
+  adminOnly:string;
 }
 
 export interface Menu {
@@ -21,7 +22,7 @@ export interface Menu {
 }
 
 const MENUITEMS = [
-  {
+  /*{
     state: '/',
     name: 'HOME',
     type: 'link',
@@ -43,7 +44,7 @@ const MENUITEMS = [
       {state: 'social', name: 'SOCIAL'},
       {state: 'chat', name: 'CHAT'}
     ]
-  },
+  },*/
   {
     state: 'user-manager',
     name: 'USER MANAGER',
@@ -51,8 +52,8 @@ const MENUITEMS = [
     icon: 'apps',
     children: [
      /* {state: 'create', name: 'CREATE'},*/
-      {state: 'AjoutEtudiant', name:'Ajouter Etudiant'},
-      {state: 'ListerUtilisateurs', name:'Liste des utilisateurs'}
+      {state: 'AjoutEtudiant', name:'Ajouter Etudiant',adminOnly:"true"},
+      {state: 'ListerUtilisateurs', name:'Liste des utilisateurs',adminOnly:"false"}
 
     ]
   },
@@ -63,8 +64,8 @@ const MENUITEMS = [
     icon: 'apps',
     children: [
       /* {state: 'create', name: 'CREATE'},*/
-      {state: 'list', name:'List'},
-      {state: 'add', name:'Ajouter'},
+      {state: 'list', name:'List',adminOnly:"false"},
+      {state: 'add', name:'Ajouter',adminOnly:"true"},
     ]
   },
   {
@@ -74,8 +75,8 @@ const MENUITEMS = [
     icon: 'apps',
     children: [
       /* {state: 'create', name: 'CREATE'},*/
-      {state: 'list', name:'List'},
-      {state: 'add', name:'add'},
+      {state: 'list', name:'List',adminOnly:"false"},
+      {state: 'add', name:'add',adminOnly:"true"},
 
     ]
   }, {
@@ -85,13 +86,13 @@ const MENUITEMS = [
     icon: 'apps',
     children: [
       /* {state: 'create', name: 'CREATE'},*/
-      {state: 'add', name:'Ajouter'},
-      {state: 'list', name:'List'},
+      {state: 'add', name:'Ajouter',adminOnly:"true"},
+      {state: 'list', name:'List',adminOnly:"false"},
 
 
     ]
   },
-  {
+  /*{
     state: 'widgets',
     name: 'WIDGETS',
     type: 'link',
@@ -242,7 +243,7 @@ const MENUITEMS = [
     name: 'DOCS',
     type: 'extTabLink',
     icon: 'local_library'
-  }
+  }*/
 ];
 
 @Injectable()
@@ -251,7 +252,5 @@ export class MenuService {
     return MENUITEMS;
   }
 
-  add(menu: Menu) {
-    MENUITEMS.push(menu);
-  }
+
 }

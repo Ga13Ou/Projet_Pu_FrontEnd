@@ -8,7 +8,7 @@ import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatIconModule,
   MatInputModule,
   MatNativeDateModule,
-  MatSelectModule
+  MatSelectModule, MatSortModule
 } from "@angular/material";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -38,6 +38,7 @@ import {PerfectScrollbarModule} from "ngx-perfect-scrollbar";
     MatTableModule,
     MatDialogModule,
     PerfectScrollbarModule,
+    MatSortModule,
   ],
   declarations: [CreateComponent, AjoutEtudiantComponent, ListerUtilisateursComponent,DialogUpdateUser],
   providers: [],

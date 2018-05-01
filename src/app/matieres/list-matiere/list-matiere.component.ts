@@ -13,8 +13,10 @@ export class ListMatiereComponent implements OnInit {
 
   private Matieres : Matiere [] = [] ;
   public filtreDataSource = new MatTableDataSource(this.Matieres);
-  displayedColumns = ['intitulé','Delete','Edit'];
+  displayedColumns = ['intitulé'];
+  public currentRole;
   constructor(private backend:BackEndServiceService) {
+    this.matTableInit();
   }
 
   ngOnInit() {
@@ -60,5 +62,11 @@ export class ListMatiereComponent implements OnInit {
     console.log(id);
   }
 
-
+  matTableInit() {
+    this.currentRole = this.backend.getUserRole();
+    if (this.currentRole == 'EMPLOYE') {
+      this.displayedColumns.push('Delete');
+      this.displayedColumns.push('Edit');
+    }
+  }
 }

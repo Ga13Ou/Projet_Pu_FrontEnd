@@ -5,7 +5,7 @@ import {EditFiliereComponent} from "../filieres/edit-filiere/edit-filiere.compon
 import {CreateMatiereComponent} from "./create-matiere/create-matiere.component";
 import {EditMatiereComponent} from "./edit-matiere/edit-matiere.component";
 import {MatiereFiliereComponent} from "./matiere-filiere/matiere-filiere.component";
-
+import {AuthRoleService as AuthRole} from "../DA/auth-role.service";
 
 export const routes: Routes = [
     {
@@ -17,14 +17,22 @@ export const routes: Routes = [
         },
             {
                 path: 'add',
-                component: CreateMatiereComponent
+                component: CreateMatiereComponent,
+                canActivate: [AuthRole],
+                data: {
+                    expectedRole: 'EMPLOYE'
+                }
             },
             {
                 path: 'edit/:id',
                 component: EditMatiereComponent
             }, {
                 path: 'addFiliere/:nomFiliere/:niveauFiliere',
-                component: MatiereFiliereComponent
+                component: MatiereFiliereComponent,
+                canActivate: [AuthRole],
+                data: {
+                    expectedRole: 'EMPLOYE'
+                }
             }
         ]
     }

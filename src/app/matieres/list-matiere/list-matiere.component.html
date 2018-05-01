@@ -7,7 +7,7 @@ width: 170px;" routerLink="/matieres/add">Ajouter</button>
     <mat-cell *matCellDef="let element"> {{element.libelle}} </mat-cell>
   </ng-container>
 
-
+<div *ngIf="currentRole=='EMPLOYE'">
     <ng-container matColumnDef="{{displayedColumns[1]}}">
       <mat-header-cell *matHeaderCellDef> {{displayedColumns[1]}} </mat-header-cell>
     <mat-cell *matCellDef="let element"> <i (click)="onButtonDeleteClick(element._id)" class="material-icons">highlight_off</i></mat-cell>
@@ -16,6 +16,7 @@ width: 170px;" routerLink="/matieres/add">Ajouter</button>
     <mat-header-cell *matHeaderCellDef> {{displayedColumns[2]}} </mat-header-cell>
     <mat-cell *matCellDef="let element"> <i [routerLink]="['/matieres/edit', element._id]" class="material-icons">mode_edit</i> </mat-cell>
   </ng-container>
+</div>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>

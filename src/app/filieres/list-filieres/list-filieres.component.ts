@@ -13,9 +13,11 @@ export class ListFilieresComponent implements OnInit {
 
   private filiers: Filiere[] = [];
   public filtreDataSource = new MatTableDataSource(this.filiers);
-  displayedColumns = ['intitulé', 'niveau', 'groupe','ajouter matieres', 'Delete', 'Edit'];
+ public currentRole;
+  displayedColumns = ['intitulé', 'niveau', 'groupe'];
 
   constructor(private backend:BackEndServiceService) {
+   this.matTableInit();
   }
 
   ngOnInit() {
@@ -59,6 +61,13 @@ export class ListFilieresComponent implements OnInit {
   onButtonEditClick(id: string) {
     console.log(id);
   }
-
+matTableInit(){
+    this.currentRole=this.backend.getUserRole();
+    if(this.currentRole=='EMPLOYE'){
+        this.displayedColumns.push('ajouter matieres');
+        this.displayedColumns.push('Delete');
+        this.displayedColumns.push('Edit');
+    }
+}
 
 }

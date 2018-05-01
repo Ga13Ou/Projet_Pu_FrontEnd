@@ -1,27 +1,27 @@
 <div class="list_Users">
 
-  <mat-table #table [dataSource]="usersDataSource">
+  <mat-table #table [dataSource]="usersDataSource" matSort  >
 
     <ng-container matColumnDef="nom">
-      <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.nom}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="prenom">
-      <mat-header-cell *matHeaderCellDef> Prenom</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Prenom</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.prenom}} </mat-cell>
     </ng-container>
 
      <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Email</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="type">
-    <mat-header-cell *matHeaderCellDef> Type</mat-header-cell>
+    <ng-container matColumnDef="type" >
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Type</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
   </ng-container>
-
+<div *ngIf="currentRole=='EMPLOYE'">
     <ng-container matColumnDef="Delete">
       <mat-header-cell *matHeaderCellDef> Supprimer</mat-header-cell>
       <mat-cell *matCellDef="let element"> <button mat-button (click)="onButtonDeleteClick(element._id)"><i class="material-icons">highlight_off</i></button> </mat-cell>
@@ -30,6 +30,7 @@
       <mat-header-cell *matHeaderCellDef> Modifier</mat-header-cell>
       <mat-cell *matCellDef="let element"> <button mat-button (click)="onButtonEditClick(element._id)"><i class="material-icons">mode_edit</i></button> </mat-cell>
     </ng-container>
+</div>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

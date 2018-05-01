@@ -17,6 +17,7 @@ width: 170px;" routerLink="/departements/add">Ajouter</button>
       {{enseignant.nom}} {{enseignant.prenom}}
     </li> </mat-cell>
   </ng-container>
+  <div *ngIf="currentRole=='EMPLOYE'">
   <ng-container matColumnDef="{{displayedColumns[3]}}">
     <mat-header-cell *matHeaderCellDef> {{displayedColumns[3]}} </mat-header-cell>
     <mat-cell *matCellDef="let element"> <i (click)="onButtonDeleteClick(element._id)" class="material-icons">highlight_off</i></mat-cell>
@@ -25,6 +26,7 @@ width: 170px;" routerLink="/departements/add">Ajouter</button>
     <mat-header-cell *matHeaderCellDef> {{displayedColumns[4]}} </mat-header-cell>
     <mat-cell *matCellDef="let element"> <i [routerLink]="['/departements/edit', element._id]" class="material-icons">mode_edit</i> </mat-cell>
   </ng-container>
+  </div>
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>
