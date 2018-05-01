@@ -110,6 +110,11 @@ export class ListerUtilisateursComponent implements OnInit {
             this.displayedColumns.push('Edit');
         }
     }
+    applyFilter(filterValue: string) {
+        filterValue = filterValue.trim(); // Remove whitespace
+        filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+        this.usersDataSource.filter = filterValue;
+    }
 }
 
 /*
