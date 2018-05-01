@@ -46,6 +46,7 @@ export class BackEndServiceService {
                         localStorage.setItem("currentUser", JSON.stringify(result.data.user));
                         resolve(result);
                     }
+                    else reject(result);
                 }).catch(err => {
                 reject(err);
 

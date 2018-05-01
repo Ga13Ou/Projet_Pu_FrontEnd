@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {Etudiant} from '../../../Models/Etudiant';
 import {User} from '../../../Models/User';
 import {BackEndServiceService} from '../../DA/back-end-service.service';
-
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -39,6 +39,11 @@ export class LoginComponent implements OnInit {
        if(currentUser){
            this.router.navigate(['/']);
        }
+}).catch(err=>{
+       swal({
+           type: 'error',
+           title: err.error.message,
+       });
    });
 
   }
