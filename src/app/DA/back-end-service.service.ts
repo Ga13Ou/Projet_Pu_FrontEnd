@@ -8,6 +8,7 @@ import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Filiere} from '../../Models/Filiere';
 import {Matiere} from "../../Models/Matiere";
 import {Departement} from "../../Models/Departement";
+import {Programme} from "../../Models/Programme";
 
 
 @Injectable()
@@ -113,20 +114,21 @@ export class BackEndServiceService {
             });
         });
     }
-  getAllMatieres(page : number , limit : number){
-    return new Promise<Matiere[]>((resolve, reject) => {
-      this.http.get<any>(environment.SERVER_URL + '/programme/matiere/getAllMatieres?page='+page+'&limit='+limit).toPromise()
-        .then((result: any) => {
-          if (result.status == 1) {
-            resolve(result.data.matieres);
-          }
-          else
-            reject()
-        }).catch(err => {
-        console.error(err)
-      });
-    });
-  }
+
+    getAllMatieres(page: number, limit: number) {
+        return new Promise<Matiere[]>((resolve, reject) => {
+            this.http.get<any>(environment.SERVER_URL + '/programme/matiere/getAllMatieres?page=' + page + '&limit=' + limit).toPromise()
+                .then((result: any) => {
+                    if (result.status == 1) {
+                        resolve(result.data.matieres);
+                    }
+                    else
+                        reject()
+                }).catch(err => {
+                console.error(err)
+            });
+        });
+    }
 
     createFiliere(filiere) {
         let body = JSON.parse(JSON.stringify(filiere));
@@ -148,103 +150,107 @@ export class BackEndServiceService {
         })
     }
 
-  createMatiere(matiere) {
-    let body = JSON.parse(JSON.stringify(matiere));
-    return new Promise((resolve, reject) => {
-      this.http.post(environment.SERVER_URL + "/programme/matiere/create", body).toPromise()
-        .then((result: any) => {
-          console.log(result.status);
-          if (result.status == 1) {
-            resolve(result);
-          }
-          else {
-            console.log(result.error.message);
-            reject(result);
-          }
-        }).catch(err => {
-        console.error(err);
-      })
+    createMatiere(matiere) {
+        let body = JSON.parse(JSON.stringify(matiere));
+        return new Promise((resolve, reject) => {
+            this.http.post(environment.SERVER_URL + "/programme/matiere/create", body).toPromise()
+                .then((result: any) => {
+                    console.log(result.status);
+                    if (result.status == 1) {
+                        resolve(result);
+                    }
+                    else {
+                        console.log(result.error.message);
+                        reject(result);
+                    }
+                }).catch(err => {
+                console.error(err);
+            })
 
-    })
-  }
-  editFiliere(filiere) {
-    let body = JSON.parse(JSON.stringify(filiere));
-    console.log(environment.SERVER_URL + "/programme/filiere/update");
-    console.log(body);
-    return new Promise((resolve, reject) => {
-      this.http.post(environment.SERVER_URL + "/programme/filiere/update", body).toPromise()
-        .then((result: any) => {
-          console.log(result.status);
-          if (result.status == 1) {
-            resolve(result);
-          }
-          else {
-            console.log(result.error.message);
-            reject(result);
-          }
-        }).catch(err => {
-        console.error(err);
-      })
-
-    })
-  }
-  editMatiere(matiere) {
-    let body = JSON.parse(JSON.stringify(matiere));
-    console.log(environment.SERVER_URL + "/programme/matiere/update");
-    console.log(body);
-    return new Promise((resolve, reject) => {
-        this.http.post(environment.SERVER_URL + "/programme/matiere/update", body).toPromise()
-            .then((result: any) => {
-                console.log(result.status);
-                if (result.status == 1) {
-                    resolve(result);
-                }
-                else {
-                    console.log(result.error.message);
-                    reject(result);
-                }
-            }).catch(err => {
-            console.error(err);
         })
-    });
-  }
-  getFiliereById(id : String){
-    return new Promise<Filiere>((resolve, reject) => {
-      this.http.get<any>(environment.SERVER_URL + '/programme/filiere/getFiliereByID?id='+id).toPromise()
-        .then((result: any) => {
-          if (result.status == 1) {
-            resolve(result.data.filiere);
-          }
-          else
-            reject()
-        }).catch(err => {
-        console.error(err)
-      });
-    });
-  }
+    }
 
-  getMatiereById(id : String){
-    return new Promise<Matiere>((resolve, reject) => {
-      this.http.get<any>(environment.SERVER_URL + '/programme/matiere/getMatiereByID?id='+id).toPromise()
-        .then((result: any) => {
-          if (result.status == 1) {
-            resolve(result.data.matiere);
-          }
-          else
-            reject()
-        }).catch(err => {
-        console.error(err)
-      });
-    });
-  }
+    editFiliere(filiere) {
+        let body = JSON.parse(JSON.stringify(filiere));
+        console.log(environment.SERVER_URL + "/programme/filiere/update");
+        console.log(body);
+        return new Promise((resolve, reject) => {
+            this.http.post(environment.SERVER_URL + "/programme/filiere/update", body).toPromise()
+                .then((result: any) => {
+                    console.log(result.status);
+                    if (result.status == 1) {
+                        resolve(result);
+                    }
+                    else {
+                        console.log(result.error.message);
+                        reject(result);
+                    }
+                }).catch(err => {
+                console.error(err);
+            })
 
-  deleteFiliere(id: string) {
-    return this.http.get(environment.SERVER_URL + "/programme/filiere/delete?id=" + id).toPromise();
-  }
+        })
+    }
 
-  deleteMatiere(id: string) {
-    return this.http.get(environment.SERVER_URL + "/programme/matiere/delete?id=" + id).toPromise();
-  }
+    editMatiere(matiere) {
+        let body = JSON.parse(JSON.stringify(matiere));
+        console.log(environment.SERVER_URL + "/programme/matiere/update");
+        console.log(body);
+        return new Promise((resolve, reject) => {
+            this.http.post(environment.SERVER_URL + "/programme/matiere/update", body).toPromise()
+                .then((result: any) => {
+                    console.log(result.status);
+                    if (result.status == 1) {
+                        resolve(result);
+                    }
+                    else {
+                        console.log(result.error.message);
+                        reject(result);
+                    }
+                }).catch(err => {
+                console.error(err);
+            })
+        });
+    }
+
+    getFiliereById(id: String) {
+        return new Promise<Filiere>((resolve, reject) => {
+            this.http.get<any>(environment.SERVER_URL + '/programme/filiere/getFiliereByID?id=' + id).toPromise()
+                .then((result: any) => {
+                    if (result.status == 1) {
+                        resolve(result.data.filiere);
+                    }
+                    else
+                        reject()
+                }).catch(err => {
+                console.error(err)
+            });
+        });
+    }
+
+    getMatiereById(id: String) {
+        return new Promise<Matiere>((resolve, reject) => {
+            this.http.get<any>(environment.SERVER_URL + '/programme/matiere/getMatiereByID?id=' + id).toPromise()
+                .then((result: any) => {
+                    if (result.status == 1) {
+                        resolve(result.data.matiere);
+                    }
+                    else
+                        reject()
+                }).catch(err => {
+                console.error(err)
+            });
+        });
+    }
+
+    deleteFiliere(id: string) {
+        return this.http.get(environment.SERVER_URL + "/programme/filiere/delete?id=" + id).toPromise();
+    }
+
+    deleteMatiere(id: string) {
+        return this.http.get(environment.SERVER_URL + "/programme/matiere/delete?id=" + id).toPromise();
+    }
+
     //departements services
     addDepartement(departement) {
         return this.http.post(environment.SERVER_URL + "/programme/departement/create", departement).toPromise()
@@ -265,11 +271,12 @@ export class BackEndServiceService {
             });
         });
     }
-    deleteDepartement(id){
+
+    deleteDepartement(id) {
         return this.http.get(environment.SERVER_URL + "/programme/departement/delete?id=" + id).toPromise();
     }
 
-    getDepartementById(id){
+    getDepartementById(id) {
         return new Promise<Departement>((resolve, reject) => {
             this.http.get<any>(environment.SERVER_URL + '/programme/departement/getDepartementByID?id=' + id).toPromise()
                 .then((result: any) => {
@@ -283,7 +290,8 @@ export class BackEndServiceService {
             });
         });
     }
-    editDepartement(body){
+
+    editDepartement(body) {
         return new Promise((resolve, reject) => {
             this.http.post(environment.SERVER_URL + "/programme/departement/update", body).toPromise()
                 .then((result: any) => {
@@ -299,6 +307,68 @@ export class BackEndServiceService {
                 console.error(err);
             })
 
+        })
+    }
+
+    getProgrammeByFiliere(nomFiliere, niveau, semestre): Promise<Programme> {
+        return new Promise<Programme>((resolve, reject) => {
+            this.http.get(environment.SERVER_URL + "/programme/getProgrammeByFiliere?filiere=" + nomFiliere + "&niveau=" + niveau + "&semestre=" + semestre).toPromise()
+                .then((result: any) => {
+                console.log(result);
+                    if (result.status == 2)
+                        reject(result);
+                    else {
+                        resolve(result.data.programme);
+                    }
+                    resolve(result);
+                });
+        })
+    }
+
+    createProgram(body) {
+        return new Promise<Programme>((resolve, reject) => {
+            this.http.post(environment.SERVER_URL + "/programme/create", body).toPromise().then((result: any) => {
+                if (result.status == 2) {
+                    reject(result);
+                }
+                else {
+                    resolve(result.data.programme);
+                }
+            }).catch(err => {
+                console.error(err);
+            })
+        })
+    }
+
+    addMatiereToProgramme(idMatiere, idProgramme) {
+        let body = {
+            "payload": {
+                "programmeID": idProgramme,
+                "matieres": [idMatiere]
+
+            }
+        };
+        return new Promise((resolve, reject) => {
+            this.http.post<any>(environment.SERVER_URL + "/programme/addMatiereToProgramme", body).toPromise()
+                .then(result=>{
+                    console.log(result);
+                    resolve(result);
+                }).catch(err=>{
+                    console.error(err);
+            });
+        })
+    }
+
+    deleteMatiereFromProgram(idMatiere, idProgramme) {
+        return new Promise((resolve, reject) => {
+            this.http.get<any>(environment.SERVER_URL + "/programme/deleteMatiereFromProgramme?matiereID="
+                + idMatiere + "&programmeID=" + idProgramme).toPromise()
+                .then(result=>{
+                    console.log(result);
+                    resolve(result);
+                }).catch(err=>{
+                    console.error(err);
+            });
         })
     }
 }

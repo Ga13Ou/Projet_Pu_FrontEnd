@@ -1,0 +1,56 @@
+<h1 class="ma-1" style="text-align: center">associer des filieres a cette matiere</h1>
+
+<div fxLayout="row wrap">
+  <mat-card fxFlex>
+
+    <mat-list >
+      <h1 mat-subheader style="text-align: center">Tous les matieres</h1>
+      <mat-divider></mat-divider>
+      <div [dragula]='"first-bag"' style="min-height: 200px" name="allMatieres">
+        <mat-list-item *ngFor="let matiere of matiereOut" [attr.idMatiere]="matiere._id">
+          <div fxLayout="row" fxLayoutAlign="start center" style="width: 100%;" >
+            <div fxFlex>
+              <p>{{matiere.libelle}}</p>
+            </div>
+            <div><i class="material-icons">radio_button_checked</i></div>
+          </div>
+        </mat-list-item>
+      </div>
+
+
+    </mat-list>
+  </mat-card>
+  <mat-card fxFlex>
+    <mat-list >
+      <h1 mat-subheader style="text-align: center">Semestre 1</h1>
+      <mat-divider></mat-divider>
+      <div [dragula]='"first-bag"' style="min-height: 200px" name="semestre1">
+      <mat-list-item *ngFor="let matiere1 of matiereInSem1" [attr.idMatiere]="matiere1._id">
+        <div fxLayout="row" fxLayoutAlign="start center" style="width: 100%;">
+          <div fxFlex>
+            <p >{{ matiere1.libelle }}</p>
+          </div>
+          <div>
+            <i class="material-icons">radio_button_checked</i>
+          </div>
+        </div>
+      </mat-list-item>
+      </div>
+      <mat-divider></mat-divider>
+      <h1 mat-subheader style="text-align: center">Semestre 2</h1>
+      <mat-divider></mat-divider>
+      <div [dragula]='"first-bag"' style="min-height: 200px" name="semestre2">
+        <mat-list-item *ngFor="let matiere2 of matiereInSem2" [attr.idMatiere]="matiere2._id">
+          <div fxLayout="row" fxLayoutAlign="start center" style="width: 100%;">
+            <div fxFlex>
+              <p >{{ matiere2.libelle }}</p>
+            </div>
+            <div>
+              <i class="material-icons">radio_button_checked</i>
+            </div>
+          </div>
+        </mat-list-item>
+      </div>
+    </mat-list>
+  </mat-card>
+</div>

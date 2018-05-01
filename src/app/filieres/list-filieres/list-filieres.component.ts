@@ -13,7 +13,7 @@ export class ListFilieresComponent implements OnInit {
 
   private filiers: Filiere[] = [];
   public filtreDataSource = new MatTableDataSource(this.filiers);
-  displayedColumns = ['intitulé', 'niveau', 'groupe', 'Delete', 'Edit'];
+  displayedColumns = ['intitulé', 'niveau', 'groupe','ajouter matieres', 'Delete', 'Edit'];
 
   constructor(private backend:BackEndServiceService) {
   }
