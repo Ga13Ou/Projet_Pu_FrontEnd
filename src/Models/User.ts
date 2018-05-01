@@ -14,6 +14,7 @@ export class User {
   date_naissance: string;
   num_cin: string;
   adresse: string;
+  img_url:string;
   public type: AccountTypeEnum;
 }
 

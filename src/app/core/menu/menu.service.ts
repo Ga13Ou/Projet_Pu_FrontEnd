@@ -49,7 +49,7 @@ const MENUITEMS = [
     state: 'user-manager',
     name: 'USER MANAGER',
     type: 'sub',
-    icon: 'apps',
+    icon: 'account_box',
     children: [
      /* {state: 'create', name: 'CREATE'},*/
       {state: 'AjoutEtudiant', name:'Ajouter Etudiant',adminOnly:"true"},
@@ -61,7 +61,7 @@ const MENUITEMS = [
     state: 'filieres',
     name: 'FILIERE',
     type: 'sub',
-    icon: 'apps',
+    icon: 'school',
     children: [
       /* {state: 'create', name: 'CREATE'},*/
       {state: 'list', name:'List',adminOnly:"false"},
@@ -72,7 +72,7 @@ const MENUITEMS = [
     state: 'matieres',
     name: 'Matiere',
     type: 'sub',
-    icon: 'apps',
+    icon: 'chrome_reader_mode',
     children: [
       /* {state: 'create', name: 'CREATE'},*/
       {state: 'list', name:'List',adminOnly:"false"},
@@ -83,7 +83,7 @@ const MENUITEMS = [
     state: 'departements',
     name: 'Departement',
     type: 'sub',
-    icon: 'apps',
+    icon: 'store',
     children: [
       /* {state: 'create', name: 'CREATE'},*/
       {state: 'add', name:'Ajouter',adminOnly:"true"},

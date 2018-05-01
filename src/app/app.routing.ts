@@ -10,7 +10,7 @@ export const AppRoutes: Routes = [{
   canActivate:[AuthGuard],
   children: [{
     path: '',
-    loadChildren: './dashboard/dashboard.module#DashboardModule'
+    loadChildren: './user-manager/user-manager.module#UserManagerModule'
   },{
     path: 'apps',
     loadChildren: './apps/apps.module#AppsModule'

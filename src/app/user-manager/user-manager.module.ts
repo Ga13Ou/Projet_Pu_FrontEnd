@@ -17,6 +17,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {DialogUpdateUser, ListerUtilisateursComponent} from './lister-utilisateurs/lister-utilisateurs.component';
 import {MatTableModule} from '@angular/material/table';
 import {PerfectScrollbarModule} from "ngx-perfect-scrollbar";
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import {PerfectScrollbarModule} from "ngx-perfect-scrollbar";
     PerfectScrollbarModule,
     MatSortModule,
   ],
-  declarations: [CreateComponent, AjoutEtudiantComponent, ListerUtilisateursComponent,DialogUpdateUser],
+  declarations: [CreateComponent, AjoutEtudiantComponent, ListerUtilisateursComponent,DialogUpdateUser, ProfilePageComponent],
   providers: [],
   entryComponents: [
     DialogUpdateUser
