@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  SERVER_URL:"http://139.99.97.231:3000"
+  SERVER_URL:"http://insat-numerique.herokuapp.com"
 };

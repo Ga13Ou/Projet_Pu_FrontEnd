@@ -46,7 +46,8 @@ export class EditDepartementsComponent implements OnInit {
                 });
 
                 this.form.controls['nom'].setValue(data.nom);
-                this.form.controls['chef_departement'].setValue(data.chef_departement._id);
+                if(data.chef_departement)
+                    this.form.controls['chef_departement'].setValue(data.chef_departement._id);
 
             });
         });
